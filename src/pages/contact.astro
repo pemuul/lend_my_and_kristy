@@ -1,0 +1,43 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ContactCTA from "../components/ContactCTA.astro";
+
+const title = "Контакты — Окей Кристи Production";
+const description = "Свяжитесь с командой Окей Кристи Production: Telegram и форма заявки.";
+const siteUrl = "https://pemuul.github.io/lend_my_and_kristy";
+const canonical = `${siteUrl}/contact`;
+const ogImage = `${siteUrl}/og/og-contact.svg`;
+---
+<BaseLayout title={title} description={description} canonical={canonical} ogImage={ogImage} accent="blue">
+  <section class="section-spacing pt-10">
+    <div class="container-tight">
+      <div class="card-surface p-8 sm:p-12">
+        <div class="reveal max-w-2xl">
+          <p class="text-sm uppercase tracking-[0.3em] text-muted">Контакты</p>
+          <h1 class="mt-4 text-3xl font-semibold text-text sm:text-4xl">Давайте обсудим задачу</h1>
+          <p class="mt-4 text-base text-muted sm:text-lg">
+            Напишите в удобный канал — мы ответим в течение 2–4 часов и предложим следующий шаг.
+          </p>
+          <div class="mt-6 flex flex-col gap-3 sm:flex-row">
+            <a class="button button-primary focus-ring" href="https://t.me/Pemuul">Написать Жданову Роману</a>
+            <a class="button button-secondary focus-ring" href="https://t.me/Okay_kristi">Написать Дементьевой Кристине</a>
+          </div>
+          <p class="mt-4 text-sm text-muted">
+            Телефон Жданова Романа: <a class="text-text underline decoration-dotted" href="tel:+79148879245">+7 914 887-92-45</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ContactCTA
+    title="Оставьте заявку"
+    text="Опишите задачу, а мы подготовим план действий и варианты сотрудничества."
+    primaryLabel="Написать Жданову Роману в Telegram"
+    primaryHref="https://t.me/Pemuul"
+    secondaryLabel="Написать Дементьевой Кристине в Telegram"
+    secondaryHref="https://t.me/Okay_kristi"
+    phoneLabel="+7 914 887-92-45"
+    phoneHref="tel:+79148879245"
+  />
+</BaseLayout>

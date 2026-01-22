@@ -5,9 +5,9 @@
 :root {
   --bg: #070A10;
   --text: #E9EEF7;
-  --muted: rgba(233, 238, 247, 0.72);
-  --card: rgba(255, 255, 255, 0.06);
-  --stroke: rgba(255, 255, 255, 0.10);
+  --muted: rgba(233, 238, 247, 0.84);
+  --card: rgba(255, 255, 255, 0.09);
+  --stroke: rgba(255, 255, 255, 0.16);
   --blue: #3B82F6;
   --red: #FF2D55;
   --accent: var(--blue);
@@ -22,6 +22,10 @@ body {
   background: var(--bg);
   color: var(--text);
   min-height: 100vh;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 img {
@@ -66,7 +70,7 @@ img {
   background-repeat: no-repeat;
   background-position: right top;
   background-size: 520px;
-  opacity: 0.09;
+  opacity: 0.18;
 }
 
 @media (max-width: 767px) {
@@ -93,7 +97,7 @@ img {
 
 .split-panel:hover {
   border-color: var(--accent);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 28px 60px rgba(0, 0, 0, 0.4);
 }
 
 .split-panel:active {
@@ -175,4 +179,56 @@ img {
 
 .button-secondary:hover {
   border-color: var(--accent);
+}
+
+.nav-link-active {
+  color: var(--text);
+  position: relative;
+}
+
+.nav-link-active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.5rem;
+  width: 100%;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 999px;
+}
+
+.input-field {
+  width: 100%;
+  border-radius: 1rem;
+  border: 1px solid var(--stroke);
+  background: rgba(5, 7, 13, 0.45);
+  padding: 0.75rem 1rem;
+  color: var(--text);
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.input-field::placeholder {
+  color: rgba(233, 238, 247, 0.55);
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent) 30%, transparent);
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border-radius: 999px;
+  border: 1px solid var(--stroke);
+  padding: 0.35rem 0.75rem;
+  font-size: 0.85rem;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.timeline-line {
+  background: linear-gradient(180deg, transparent, color-mix(in oklab, var(--accent) 55%, transparent), transparent);
 }

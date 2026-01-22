@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#0b1220" />
+  <rect x="40" y="40" width="1120" height="550" rx="40" fill="#141a2a" stroke="#3b82f6" stroke-width="4" />
+  <text x="120" y="250" fill="#ffffff" font-size="56" font-family="Arial, sans-serif">Окей Кристи Production</text>
+  <text x="120" y="320" fill="#d6deea" font-size="32" font-family="Arial, sans-serif">Развиваемся вместе</text>
+</svg>

@@ -4,16 +4,18 @@ import SplitHero from "../components/SplitHero.astro";
 import Section from "../components/Section.astro";
 import FeatureGrid from "../components/FeatureGrid.astro";
 import ContactCTA from "../components/ContactCTA.astro";
-import romanPhoto from "../images/Roman.jpeg";
-import kristyPhoto from "../images/Kristy.jpeg";
+import romanPhoto from "../images/Roman.svg";
+import kristyPhoto from "../images/Kristy.svg";
 
-const title = "Окей Кристи Production — продюсирование и инженерия";
-const description = "Команда продюсирования, маркетинга и автоматизации. Выберите Кристину или Романа для персонального подхода.";
-const canonical = "https://example.com/";
+const title = "Окей Кристи Production — Развиваемся вместе";
+const description = "Команда продюсирования, маркетинга и автоматизации. Выберите Дементьеву Кристину или Жданова Романа для персонального подхода.";
+const siteUrl = "https://pemuul.github.io/lend_my_and_kristy";
+const canonical = `${siteUrl}/`;
+const ogImage = `${siteUrl}/og/og-home.svg`;
 const baseUrl = import.meta.env.BASE_URL;
 const withBase = (path: string) => `${baseUrl.replace(/\/$/, "")}/${path.replace(/^\//, "")}`;
 ---
-<BaseLayout title={title} description={description} canonical={canonical} accent="blue">
+<BaseLayout title={title} description={description} canonical={canonical} ogImage={ogImage} accent="blue">
   <section class="section-spacing pt-10">
     <div class="container-tight">
       <div class="card-surface relative overflow-hidden p-8 sm:p-12">
@@ -23,12 +25,13 @@ const withBase = (path: string) => `${baseUrl.replace(/\/$/, "")}/${path.replace
           aria-hidden="true"
         ></div>
         <div class="relative z-10 max-w-2xl">
-          <p class="text-sm uppercase tracking-[0.3em] text-muted">Окей Кристи Production</p>
-          <h1 class="mt-4 text-3xl font-semibold text-text sm:text-4xl lg:text-5xl">
+          <p class="text-sm uppercase tracking-[0.3em] text-muted fade-in">Окей Кристи Production</p>
+          <p class="mt-2 text-sm text-muted">Развиваемся вместе</p>
+          <h1 class="mt-4 text-3xl font-semibold text-text sm:text-4xl lg:text-5xl fade-in" style="animation-delay: 120ms;">
             Маркетинг + продюсирование + автоматизация и интеграции
           </h1>
-          <p class="mt-4 text-base text-muted sm:text-lg">
-            Выберите эксперта — Кристина отвечает за продюсирование и сообщества, Роман — за автоматизацию, ИИ и интеграции.
+          <p class="mt-4 text-base text-muted sm:text-lg fade-in" style="animation-delay: 220ms;">
+            Выберите эксперта — Дементьева Кристина отвечает за продюсирование и сообщества, Жданов Роман — за автоматизацию, ИИ и интеграции.
           </p>
         </div>
       </div>
@@ -42,34 +45,42 @@ const withBase = (path: string) => `${baseUrl.replace(/\/$/, "")}/${path.replace
       subtitle:
         "Автоматизация бизнес-процессов, интеграции 1С/CRM/сайтов/ботов, надёжные контуры данных, MVP быстро и без хаоса.",
       bullets: [
-        "n8n + Python, REST/Webhooks/SQL",
-        "1С ↔ CRM ↔ сайт ↔ мессенджеры",
-        "OCR/IDP, боты и ИИ-агенты"
+        { icon: "lucide:code-2", text: "n8n + Python, REST/Webhooks/SQL" },
+        { icon: "lucide:git-merge", text: "1С ↔ CRM ↔ сайт ↔ мессенджеры" },
+        { icon: "lucide:bot", text: "OCR/IDP, боты и ИИ-агенты" }
       ],
       image: {
         src: romanPhoto.src,
-        alt: "Роман — инженер автоматизации и интеграций"
+        alt: "Жданов Роман — инженер автоматизации и интеграций",
+        width: 640,
+        height: 640
       },
-      cta: "Перейти на страницу Романа",
+      cta: "Перейти на страницу Жданова Романа",
       secondary: "Написать",
-      href: withBase("/roman")
+      href: withBase("/roman"),
+      secondaryHref: "https://t.me/Pemuul",
+      responseTime: "Среднее время ответа: 2–4 часа"
     }}
     right={{
       accent: "red",
-      title: "Кристина Дементьева — продюсирование и управляемые сообщества",
+      title: "Дементьева Кристина — продюсирование и управляемые сообщества",
       quote: "«Я не вдохновляю — я показываю путь. Я не обещаю результат — я его проектирую»",
       bullets: [
-        "Контент-маркетинг: YouTube / RuTube / Telegram",
-        "Таргет + аналитика + стратегия продвижения",
-        "Продажи через соцсети и системные проекты"
+        { icon: "lucide:video", text: "Контент-маркетинг: YouTube / RuTube / Telegram" },
+        { icon: "lucide:megaphone", text: "Таргет + аналитика + стратегия продвижения" },
+        { icon: "lucide:trending-up", text: "Продажи через соцсети и системные проекты" }
       ],
       image: {
         src: kristyPhoto.src,
-        alt: "Кристина Дементьева — продюсирование и сообщества"
+        alt: "Дементьева Кристина — продюсирование и сообщества",
+        width: 882,
+        height: 1280
       },
-      cta: "Перейти на страницу Кристины",
+      cta: "Перейти на страницу Дементьевой Кристины",
       secondary: "Написать",
-      href: withBase("/kristina")
+      href: withBase("/kristina"),
+      secondaryHref: "https://t.me/Okay_kristi",
+      responseTime: "Среднее время ответа: 2–4 часа"
     }}
   />
 
@@ -78,16 +89,34 @@ const withBase = (path: string) => `${baseUrl.replace(/\/$/, "")}/${path.replace
     subtitle="Мы объединяем системный маркетинг и инженерный подход: создаём понятную стратегию, упаковываем продукт и подключаем автоматизацию так, чтобы результат был измеримым и масштабируемым."
   >
     <FeatureGrid
-      items={["Стратегия и упаковка", "Контент и продвижение", "Автоматизация и интеграции"]}
+      items={[
+        {
+          title: "Стратегия и упаковка",
+          description: "Фиксируем позиционирование, воронку и сильное предложение.",
+          icon: "lucide:compass"
+        },
+        {
+          title: "Контент и продвижение",
+          description: "Выстраиваем медиа-экосистему и рост комьюнити.",
+          icon: "lucide:sparkles"
+        },
+        {
+          title: "Автоматизация и интеграции",
+          description: "Связываем 1С, CRM, сайты и ботов в единый контур.",
+          icon: "lucide:cpu"
+        }
+      ]}
     />
   </Section>
 
   <ContactCTA
     title="Хотите обсудить задачу?"
     text="Напишите нам — подскажем следующий шаг и предложим формат работы."
-    primaryLabel="Связаться в Telegram"
-    primaryHref="TODO: telegram link"
-    secondaryLabel="Написать на почту"
-    secondaryHref="mailto:TODO"
+    primaryLabel="Написать Жданову Роману в Telegram"
+    primaryHref="https://t.me/Pemuul"
+    secondaryLabel="Написать Дементьевой Кристине в Telegram"
+    secondaryHref="https://t.me/Okay_kristi"
+    phoneLabel="+7 914 887-92-45"
+    phoneHref="tel:+79148879245"
   />
 </BaseLayout>

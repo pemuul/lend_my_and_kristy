@@ -1,0 +1,27 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+const title = "Страница не найдена — Окей Кристи Production";
+const description = "Страница не найдена. Перейдите на главную или свяжитесь с нами.";
+const siteUrl = "https://pemuul.github.io/lend_my_and_kristy";
+const canonical = `${siteUrl}/404`;
+const ogImage = `${siteUrl}/og/og-home.png`;
+const baseUrl = import.meta.env.BASE_URL;
+const withBase = (path: string) => `${baseUrl.replace(/\/$/, "")}/${path.replace(/^\//, "")}`;
+---
+<BaseLayout title={title} description={description} canonical={canonical} ogImage={ogImage} accent="blue">
+  <section class="section-spacing pt-14">
+    <div class="container-tight">
+      <div class="card-surface p-8 sm:p-12 text-center">
+        <p class="text-sm uppercase tracking-[0.3em] text-muted">404</p>
+        <h1 class="mt-4 text-3xl font-semibold text-text sm:text-4xl">Страница не найдена</h1>
+        <p class="mt-4 text-base text-muted sm:text-lg">
+          Кажется, ссылка устарела или была введена с ошибкой. Вернитесь на главную или свяжитесь с нами.
+        </p>
+        <div class="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+          <a class="button button-primary focus-ring" href={withBase("/")}>На главную</a>
+          <a class="button button-secondary focus-ring" href={withBase("/contact")}>Связаться</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
