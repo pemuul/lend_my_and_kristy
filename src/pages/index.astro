@@ -4,6 +4,8 @@ import SplitHero from "../components/SplitHero.astro";
 import Section from "../components/Section.astro";
 import FeatureGrid from "../components/FeatureGrid.astro";
 import ContactCTA from "../components/ContactCTA.astro";
+import romanPhoto from "../images/Roman.jpeg";
+import kristyPhoto from "../images/Kristy.jpeg";
 
 const title = "Окей Кристи Production — продюсирование и инженерия";
 const description = "Команда продюсирования, маркетинга и автоматизации. Выберите Кристину или Романа для персонального подхода.";
@@ -44,6 +46,10 @@ const withBase = (path: string) => `${baseUrl}${path.replace(/^\//, "")}`;
         "1С ↔ CRM ↔ сайт ↔ мессенджеры",
         "OCR/IDP, боты и ИИ-агенты"
       ],
+      image: {
+        src: romanPhoto,
+        alt: "Роман — инженер автоматизации и интеграций"
+      },
       cta: "Перейти на страницу Романа",
       secondary: "Написать",
       href: withBase("/ivan")
@@ -57,6 +63,10 @@ const withBase = (path: string) => `${baseUrl}${path.replace(/^\//, "")}`;
         "Таргет + аналитика + стратегия продвижения",
         "Продажи через соцсети и системные проекты"
       ],
+      image: {
+        src: kristyPhoto,
+        alt: "Кристина Дементьева — продюсирование и сообщества"
+      },
       cta: "Перейти на страницу Кристины",
       secondary: "Написать",
       href: withBase("/kristina")
