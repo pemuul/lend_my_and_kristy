@@ -7,6 +7,8 @@ import StepsTimeline from "../components/StepsTimeline.astro";
 const title = "Роман — автоматизация, ИИ и интеграции";
 const description = "Интеграционный инженер: автоматизация процессов, связки 1С/CRM/сайтов/ботов, интеллектуальные решения и MVP.";
 const canonical = "https://example.com/ivan";
+const baseUrl = import.meta.env.BASE_URL;
+const withBase = (path: string) => `${baseUrl}${path.replace(/^\//, "")}`;
 ---
 <BaseLayout title={title} description={description} canonical={canonical} accent="blue">
   <section class="section-spacing pt-10">
@@ -14,7 +16,7 @@ const canonical = "https://example.com/ivan";
       <div class="card-surface relative overflow-hidden p-8 sm:p-12">
         <div
           class="pattern-bg absolute right-0 top-0 h-full w-full"
-          style="background-image: url('/patterns/circuit-blue.svg');"
+          style={`background-image: url('${withBase("/patterns/circuit-blue.svg")}');`}
           aria-hidden="true"
         ></div>
         <div class="relative z-10 max-w-3xl">
@@ -29,7 +31,7 @@ const canonical = "https://example.com/ivan";
           </div>
           <div class="mt-6 flex flex-col gap-3 sm:flex-row">
             <a class="button button-primary focus-ring" href="TODO: telegram link">Обсудить задачу</a>
-            <a class="button button-secondary focus-ring" href="/">На главную</a>
+            <a class="button button-secondary focus-ring" href={withBase("/")}>На главную</a>
           </div>
         </div>
       </div>
