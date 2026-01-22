@@ -43,6 +43,9 @@ const {
     <meta name="twitter:image" content={ogImage} />
     <title>{title}</title>
     <link rel="icon" href={`${baseUrl}favicon.svg`} type="image/svg+xml" />
+    <link rel="icon" href={`${baseUrl}favicon.ico`} sizes="any" />
+    <link rel="icon" href={`${baseUrl}favicon-96x96.png`} type="image/png" sizes="96x96" />
+    <link rel="apple-touch-icon" href={`${baseUrl}apple-touch-icon.png`} />
     <meta name="theme-color" content="#070A10" />
   </head>
   <body style={`--accent: var(--${accent});`} class="bg-bg text-text">
@@ -61,11 +64,13 @@ const {
       const closeMenu = () => {
         overlay?.classList.add('hidden');
         document.body.style.overflow = '';
+        document.body.classList.remove('menu-open');
       };
 
       toggle?.addEventListener('click', () => {
         overlay?.classList.remove('hidden');
         document.body.style.overflow = 'hidden';
+        document.body.classList.add('menu-open');
       });
 
       close?.addEventListener('click', closeMenu);
