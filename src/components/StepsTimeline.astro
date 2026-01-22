@@ -11,15 +11,15 @@ interface Props {
 const { steps } = Astro.props;
 ---
 <div class="relative">
-  <div class="absolute left-3 top-0 h-full w-px bg-stroke/80"></div>
+  <div class="absolute left-4 top-0 h-full w-px timeline-line"></div>
   <div class="space-y-6">
     {steps.map((step, index) => (
-      <div class="relative flex gap-4">
-        <div class="mt-1 flex h-6 w-6 items-center justify-center rounded-full border border-stroke bg-bg text-xs text-accent">
+      <div class="relative flex gap-5">
+        <div class="mt-1 flex h-8 w-8 items-center justify-center rounded-full border border-stroke bg-bg text-sm font-semibold text-accent">
           {index + 1}
         </div>
         <div class="card-surface flex-1 p-5 reveal">
-          <h3 class="text-base font-semibold text-text">{step.title}</h3>
+          <h3 class="text-lg font-semibold text-text">{step.title}</h3>
           <p class="mt-2 text-sm text-muted">{step.description}</p>
         </div>
       </div>

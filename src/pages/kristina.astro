@@ -3,15 +3,17 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Section from "../components/Section.astro";
 import ServicesGrid from "../components/ServicesGrid.astro";
 import ContactCTA from "../components/ContactCTA.astro";
-import kristyPhoto from "../images/Kristy.jpeg";
+import kristyPhoto from "../images/Kristy.svg";
 
-const title = "Кристина Дементьева — продюсирование и сообщества";
+const title = "Дементьева Кристина — Окей Кристи Production";
 const description = "Продюсирование и управляемые сообщества. Системный маркетинг без магии.";
-const canonical = "https://example.com/kristina";
+const siteUrl = "https://pemuul.github.io/lend_my_and_kristy";
+const canonical = `${siteUrl}/kristina`;
+const ogImage = `${siteUrl}/og/og-kristina.svg`;
 const baseUrl = import.meta.env.BASE_URL;
 const withBase = (path: string) => `${baseUrl.replace(/\/$/, "")}/${path.replace(/^\//, "")}`;
 ---
-<BaseLayout title={title} description={description} canonical={canonical} accent="red">
+<BaseLayout title={title} description={description} canonical={canonical} ogImage={ogImage} accent="red">
   <section class="section-spacing pt-10">
     <div class="container-tight">
       <div class="card-surface relative overflow-hidden p-8 sm:p-12">
@@ -22,23 +24,26 @@ const withBase = (path: string) => `${baseUrl.replace(/\/$/, "")}/${path.replace
         ></div>
         <div class="relative z-10 grid gap-6 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
           <div class="max-w-2xl">
-            <h1 class="text-3xl font-semibold text-text sm:text-4xl lg:text-5xl">Кристина Дементьева</h1>
+            <h1 class="text-3xl font-semibold text-text sm:text-4xl lg:text-5xl">Дементьева Кристина</h1>
             <p class="mt-3 text-base text-muted sm:text-lg">
               Продюсирование и управляемые сообщества. Системный маркетинг без “магии”.
             </p>
+            <p class="mt-2 text-sm text-muted">Выстраиваю понятную систему продвижения с результатом в цифрах.</p>
             <p class="mt-4 text-sm text-muted">
               «Я не вдохновляю — я показываю путь. Я не обещаю результат — я его проектирую»
             </p>
             <div class="mt-6 flex flex-col gap-3 sm:flex-row">
-              <a class="button button-primary focus-ring" href="TODO: telegram link">Запросить консультацию</a>
+              <a class="button button-primary focus-ring" href="https://t.me/Okay_kristi">Запросить консультацию</a>
               <a class="button button-secondary focus-ring" href={withBase("/")}>На главную</a>
             </div>
           </div>
-          <div class="overflow-hidden rounded-3xl border border-white/10 shadow-2xl">
+          <div class="overflow-hidden rounded-3xl border border-white/10 shadow-2xl transition-transform duration-300 hover:scale-[1.02]">
             <img
               src={kristyPhoto.src}
-              alt="Кристина Дементьева"
-              class="h-64 w-full object-cover sm:h-72 lg:h-80"
+              alt="Дементьева Кристина"
+              class="h-64 w-full object-cover object-center sm:h-72 lg:h-80"
+              width="882"
+              height="1280"
               loading="lazy"
               decoding="async"
             />
@@ -48,27 +53,62 @@ const withBase = (path: string) => `${baseUrl.replace(/\/$/, "")}/${path.replace
     </div>
   </section>
 
-  <Section title="Результат рождается из структуры">
-    <div class="reveal max-w-3xl text-base text-muted sm:text-lg">
-      <p>
-        В 2006 году Кристина Дементьева разогнала газету «Подмосковье плюс» с 8 до 16 полос за полгода — и это стало первым осознанием: результат рождается из структуры. Дальше — постоянная эволюция, глубина и системность.
-      </p>
+  <Section title="История и подход">
+    <div class="grid gap-4 md:grid-cols-3">
+      {[
+        {
+          title: "Старт и масштабирование",
+          text: "В 2006 году ускорила выпуск газеты «Подмосковье плюс» с 8 до 16 полос за 6 месяцев."
+        },
+        {
+          title: "Эволюция смыслов",
+          text: "Перешла от бренд-менеджмента к системам смыслов и устойчивым комьюнити."
+        },
+        {
+          title: "Системность",
+          text: "Сочетает маркетинг, психологию и продюсирование, создавая живые структуры."
+        }
+      ].map((item) => (
+        <div class="card-surface p-5 text-sm text-muted reveal">
+          <p class="text-base font-semibold text-text">{item.title}</p>
+          <p class="mt-2 text-sm text-muted">{item.text}</p>
+        </div>
+      ))}
     </div>
   </Section>
 
   <Section title="Опыт и развитие">
-    <ul class="space-y-4 text-base text-muted sm:text-lg">
-      <li class="reveal">1) Строила стратегии и работала с международными компаниями (Siemens, Samsung, Bayer, Pfizer).</li>
-      <li class="reveal">2) Перешла от “бренд-менеджмента” к смыслам: проекты и бизнес-сети, где маркетинг — это жизнь, а не только цифры.</li>
-      <li class="reveal">3) Углубилась в психологию и командную динамику, запустила собственные бренды и управляла десятками SMM-проектов.</li>
-    </ul>
+    <ServicesGrid
+      columns={3}
+      items={[
+        {
+          title: "Международный опыт",
+          description: "Проекты для Siemens, Samsung, Bayer, Pfizer.",
+          icon: "lucide:globe"
+        },
+        {
+          title: "Системные смыслы",
+          description: "От бренд-менеджмента к стратегическим бизнес-сетям.",
+          icon: "lucide:network"
+        },
+        {
+          title: "Командная динамика",
+          description: "Психология, запуск брендов, управление SMM-командами.",
+          icon: "lucide:users"
+        }
+      ]}
+    />
   </Section>
 
   <Section title="Фокус сегодня">
     <div class="reveal max-w-3xl text-base text-muted sm:text-lg">
       <p>
-        Сегодня фокус — продюсирование и управляемые сообщества. Кристина соединяет несколько образований (от программирования до психологии), авторские методики и аппаратный комплекс «Детектрон», чтобы создавать живые работающие системы — не просто проекты.
+        Сегодня фокус — <span class="text-text font-semibold">продюсирование и управляемые сообщества</span>. Дементьева Кристина соединяет несколько образований (от программирования до психологии), авторские методики и аппаратный комплекс <span class="text-text font-semibold">«Детектрон»</span>, чтобы создавать живые работающие системы — не просто проекты.
       </p>
+    </div>
+    <div class="mt-6 inline-flex items-center gap-3 rounded-full border border-stroke/70 bg-black/20 px-4 py-2 text-sm text-muted reveal">
+      <span class="text-accent font-semibold">Детектрон</span>
+      <span>Аппаратный комплекс для диагностики динамики команды и продукта.</span>
     </div>
   </Section>
 
@@ -76,11 +116,31 @@ const withBase = (path: string) => `${baseUrl.replace(/\/$/, "")}/${path.replace
     <ServicesGrid
       columns={2}
       items={[
-        "Личные бренды и бренды среднего размера",
-        "Контент-маркетинг (YouTube, RuTube, Telegram)",
-        "Таргетированная реклама",
-        "Аналитика и стратегия продвижения",
-        "Продажи через социальные сети"
+        {
+          title: "Личные бренды и mid-size",
+          description: "Системная упаковка продукта и команды.",
+          icon: "lucide:badge-check"
+        },
+        {
+          title: "Контент-маркетинг",
+          description: "YouTube, RuTube, Telegram и распределение форматов.",
+          icon: "lucide:play-circle"
+        },
+        {
+          title: "Таргетированная реклама",
+          description: "Воронки и оптимизация под KPI.",
+          icon: "lucide:target"
+        },
+        {
+          title: "Аналитика и стратегия",
+          description: "Метрики, гипотезы, медиапланирование.",
+          icon: "lucide:bar-chart-3"
+        },
+        {
+          title: "Продажи через соцсети",
+          description: "Скрипты, контент, касания.",
+          icon: "lucide:shopping-bag"
+        }
       ]}
     />
   </Section>
@@ -89,8 +149,8 @@ const withBase = (path: string) => `${baseUrl.replace(/\/$/, "")}/${path.replace
     title="Нужна система, а не “разовые посты”?"
     text="Напишите — предложу понятный план действий и формат работы."
     primaryLabel="Связаться в Telegram"
-    primaryHref="TODO: telegram link"
-    secondaryLabel="Написать на почту"
-    secondaryHref="mailto:TODO"
+    primaryHref="https://t.me/Okay_kristi"
+    secondaryLabel="Написать Жданову Роману"
+    secondaryHref="https://t.me/Pemuul"
   />
 </BaseLayout>

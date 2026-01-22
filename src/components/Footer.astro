@@ -1,5 +1,5 @@
 ---
-const year = new Date().getFullYear();
+const year = "2026";
 const baseUrl = import.meta.env.BASE_URL;
 const withBase = (path: string) => `${baseUrl.replace(/\/$/, "")}/${path.replace(/^\//, "")}`;
 ---
@@ -8,8 +8,8 @@ const withBase = (path: string) => `${baseUrl.replace(/\/$/, "")}/${path.replace
     <span>© {year} Окей Кристи Production</span>
     <div class="flex gap-4">
       <a href={withBase("/")} class="hover:text-text transition-colors focus-ring">Главная</a>
-      <a href={withBase("/kristina")} class="hover:text-text transition-colors focus-ring">Кристина</a>
-      <a href={withBase("/roman")} class="hover:text-text transition-colors focus-ring">Роман</a>
+      <a href={withBase("/contact")} class="hover:text-text transition-colors focus-ring">Контакты</a>
+      <a href="https://t.me/Pemuul" class="hover:text-text transition-colors focus-ring">Telegram Жданова Романа</a>
     </div>
   </div>
 </footer>

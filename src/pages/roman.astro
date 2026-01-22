@@ -3,15 +3,18 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Section from "../components/Section.astro";
 import ServicesGrid from "../components/ServicesGrid.astro";
 import StepsTimeline from "../components/StepsTimeline.astro";
-import romanPhoto from "../images/Roman.jpeg";
+import romanPhoto from "../images/Roman.svg";
+import { Icon } from "astro-icon/components";
 
-const title = "Роман — автоматизация, ИИ и интеграции";
+const title = "Жданов Роман — Окей Кристи Production";
 const description = "Интеграционный инженер: автоматизация процессов, связки 1С/CRM/сайтов/ботов, интеллектуальные решения и MVP.";
-const canonical = "https://example.com/roman";
+const siteUrl = "https://pemuul.github.io/lend_my_and_kristy";
+const canonical = `${siteUrl}/roman`;
+const ogImage = `${siteUrl}/og/og-roman.svg`;
 const baseUrl = import.meta.env.BASE_URL;
 const withBase = (path: string) => `${baseUrl.replace(/\/$/, "")}/${path.replace(/^\//, "")}`;
 ---
-<BaseLayout title={title} description={description} canonical={canonical} accent="blue">
+<BaseLayout title={title} description={description} canonical={canonical} ogImage={ogImage} accent="blue">
   <section class="section-spacing pt-10">
     <div class="container-tight">
       <div class="card-surface relative overflow-hidden p-8 sm:p-12">
@@ -22,7 +25,8 @@ const withBase = (path: string) => `${baseUrl.replace(/\/$/, "")}/${path.replace
         ></div>
         <div class="relative z-10 grid gap-6 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
           <div class="max-w-3xl">
-            <h1 class="text-3xl font-semibold text-text sm:text-4xl lg:text-5xl">Автоматизация + ИИ + Интеграции под ключ</h1>
+            <p class="text-sm uppercase tracking-[0.3em] text-muted">Жданов Роман</p>
+            <h1 class="mt-3 text-3xl font-semibold text-text sm:text-4xl lg:text-5xl">Автоматизация + ИИ + Интеграции под ключ</h1>
             <div class="mt-4 space-y-4 text-base text-muted sm:text-lg">
               <p>
                 Я интеграционный инженер с более чем 6-летним опытом. Помогаю бизнесу оптимизировать процессы, соединяя разрозненные системы в единый эффективно работающий механизм. Мой подход — это не просто интеграция, а создание интеллектуальных решений, которые приносят измеримый результат.
@@ -31,16 +35,33 @@ const withBase = (path: string) => `${baseUrl.replace(/\/$/, "")}/${path.replace
                 Я специализируюсь на связках 1С, CRM-систем, веб-сайтов, чат-ботов и API, используя современные технологии n8n и Python. В работе применяю REST/Webhooks/SQL и интеграции с Telegram, WhatsApp, VK и платформами вроде MAX.
               </p>
             </div>
+            <div class="mt-5 flex flex-wrap gap-2">
+              {[
+                { label: "Python", icon: "lucide:code-2" },
+                { label: "n8n", icon: "lucide:git-merge" },
+                { label: "REST", icon: "lucide:link-2" },
+                { label: "SQL", icon: "lucide:database" },
+                { label: "1С/CRM", icon: "lucide:server" },
+                { label: "Bots/AI", icon: "lucide:bot" }
+              ].map((item) => (
+                <span class="tag">
+                  <Icon name={item.icon} class="h-4 w-4" aria-hidden="true" />
+                  {item.label}
+                </span>
+              ))}
+            </div>
             <div class="mt-6 flex flex-col gap-3 sm:flex-row">
-              <a class="button button-primary focus-ring" href="TODO: telegram link">Обсудить задачу</a>
+              <a class="button button-primary focus-ring" href="https://t.me/Pemuul">Обсудить задачу</a>
               <a class="button button-secondary focus-ring" href={withBase("/")}>На главную</a>
             </div>
           </div>
           <div class="overflow-hidden rounded-3xl border border-white/10 shadow-2xl">
             <img
               src={romanPhoto.src}
-              alt="Роман"
-              class="h-64 w-full object-cover sm:h-72 lg:h-80"
+              alt="Жданов Роман"
+              class="h-64 w-full object-cover object-center sm:h-72 lg:h-80"
+              width="640"
+              height="640"
               loading="lazy"
               decoding="async"
             />
@@ -54,11 +75,31 @@ const withBase = (path: string) => `${baseUrl.replace(/\/$/, "")}/${path.replace
     <ServicesGrid
       columns={3}
       items={[
-        "Кадровый дефицит — достигать большего с тем же или меньшим штатом",
-        "Быстрый рост GenAI — переход от пилотов к внедрению",
-        "Фокус на BPM / low-code — ускорение изменений процессов",
-        "1С — ядро ERP — интеграции вокруг 1С критически важны",
-        "Требования по ПДн (с 01.07.2025) — локализация первичного сбора данных"
+        {
+          title: "Дефицит кадров",
+          description: "Рост эффективности без расширения штата.",
+          icon: "lucide:users"
+        },
+        {
+          title: "GenAI на практике",
+          description: "Переход от экспериментов к внедрениям.",
+          icon: "lucide:cpu"
+        },
+        {
+          title: "BPM и low-code",
+          description: "Ускорение изменений бизнес-процессов.",
+          icon: "lucide:workflow"
+        },
+        {
+          title: "1С как ядро",
+          description: "Интеграции вокруг 1С критически важны.",
+          icon: "lucide:database"
+        },
+        {
+          title: "Требования ПДн",
+          description: "Локализация первичного сбора данных с 01.07.2025.",
+          icon: "lucide:shield-check"
+        }
       ]}
     />
   </Section>
@@ -67,10 +108,26 @@ const withBase = (path: string) => `${baseUrl.replace(/\/$/, "")}/${path.replace
     <ServicesGrid
       columns={2}
       items={[
-        "Ручные операции — рутина, перенос данных, отчёты, выгорание",
-        "Разрозненность данных — 1С, CRM, Excel, мессенджеры → нет единой картины",
-        "Нестабильные интеграции — нет логов/ретраев/дедупликации → потери данных",
-        "Желание внедрить ИИ без хаоса — нужен стабильный процесс, измеримый результат"
+        {
+          title: "Ручные операции",
+          description: "Рутина, перенос данных, отчёты, выгорание.",
+          icon: "lucide:repeat"
+        },
+        {
+          title: "Разрозненность данных",
+          description: "1С, CRM, Excel, мессенджеры → нет единой картины.",
+          icon: "lucide:layers"
+        },
+        {
+          title: "Нестабильные интеграции",
+          description: "Нет логов/ретраев/дедупликации → потери данных.",
+          icon: "lucide:alert-triangle"
+        },
+        {
+          title: "ИИ без хаоса",
+          description: "Нужен стабильный процесс и измеримый результат.",
+          icon: "lucide:wand-2"
+        }
       ]}
     />
   </Section>
@@ -103,33 +160,60 @@ const withBase = (path: string) => `${baseUrl.replace(/\/$/, "")}/${path.replace
     <ServicesGrid
       columns={2}
       items={[
-        "Интеграционный контур “1С ↔ всё вокруг”",
-        "Автоматизация обработки документов и чеков (OCR/IDP)",
-        "ИИ-оператор: боты и агенты, выполняющие действия через API",
-        "HR-автоматизация: FaceID-учёт и табель в 1С",
-        "ВЭД/импорт: ТН ВЭД, расчёты и контроль данных"
+        {
+          title: "1С ↔ всё вокруг",
+          description: "Единый интеграционный контур для ERP, CRM и сайтов.",
+          icon: "lucide:git-merge"
+        },
+        {
+          title: "OCR/IDP документооборот",
+          description: "Автоматизация обработки документов и чеков.",
+          icon: "lucide:file-scan"
+        },
+        {
+          title: "ИИ-оператор",
+          description: "Боты и агенты, выполняющие действия через API.",
+          icon: "lucide:bot"
+        },
+        {
+          title: "HR-автоматизация",
+          description: "FaceID-учёт и табель в 1С.",
+          icon: "lucide:id-card"
+        },
+        {
+          title: "ВЭД/импорт",
+          description: "ТН ВЭД, расчёты и контроль данных.",
+          icon: "lucide:truck"
+        }
       ]}
     />
   </Section>
 
   <Section title="Кейсы и следующий шаг" id="contact">
-    <ServicesGrid
-      columns={3}
-      items={[
-        "Промо-бот и проверка чеков — сокращение рутины ~90%",
-        "FaceID-учёт времени — интеграция с 1С, исключение подлогов",
-        "Контент-конвейер на n8n — “в несколько кликов” из лекций в посты"
-      ]}
-    />
+    <div class="grid gap-4 md:grid-cols-3">
+      {[
+        { title: "Промо-бот", result: "−90% рутины", text: "Автоматическая проверка чеков." },
+        { title: "FaceID-учёт", result: "0 подлогов", text: "Интеграция с 1С и табелем." },
+        { title: "Контент-конвейер", result: "в 4× быстрее", text: "n8n-цепочка из лекций в посты." }
+      ].map((item) => (
+        <div class="card-surface p-5 text-sm text-muted reveal">
+          <p class="text-base font-semibold text-text">{item.title}</p>
+          <p class="mt-3 text-2xl font-semibold text-accent">{item.result}</p>
+          <p class="mt-2 text-sm text-muted">{item.text}</p>
+        </div>
+      ))}
+    </div>
     <div class="mt-8 max-w-3xl text-base text-muted sm:text-lg reveal">
       <p>
         Готов обсудить задачи и предложить конкретные решения. Запишитесь на бесплатный созвон 30–60 минут — по итогам подготовлю план с 3–5 приоритетными автоматизациями и описанием MVP.
       </p>
     </div>
     <div class="mt-6 flex flex-col gap-3 sm:flex-row">
-      <a class="button button-primary focus-ring" href="TODO: telegram link">Связаться в Telegram</a>
-      <a class="button button-secondary focus-ring" href="mailto:TODO">Написать на почту</a>
+      <a class="button button-primary focus-ring" href="https://t.me/Pemuul">Связаться в Telegram</a>
     </div>
+    <p class="mt-4 text-sm text-muted">
+      Телефон: <a class="text-text underline decoration-dotted" href="tel:+79148879245">+7 914 887-92-45</a>
+    </p>
   </Section>
 
 </BaseLayout>
