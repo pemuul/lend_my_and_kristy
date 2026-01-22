@@ -4,8 +4,8 @@ import SplitHero from "../components/SplitHero.astro";
 import Section from "../components/Section.astro";
 import FeatureGrid from "../components/FeatureGrid.astro";
 import ContactCTA from "../components/ContactCTA.astro";
-import romanPhoto from "../images/Roman.svg";
-import kristyPhoto from "../images/Kristy.svg";
+import romanPhoto from "../images/Roman.jpeg";
+import kristyPhoto from "../images/Kristy.jpeg";
 
 const title = "Окей Кристи Production — Развиваемся вместе";
 const description = "Команда продюсирования, маркетинга и автоматизации. Выберите Дементьеву Кристину или Жданова Романа для персонального подхода.";
@@ -116,6 +116,8 @@ const withBase = (path: string) => `${baseUrl.replace(/\/$/, "")}/${path.replace
     primaryHref="https://t.me/Pemuul"
     secondaryLabel="Написать Дементьевой Кристине в Telegram"
     secondaryHref="https://t.me/Okay_kristi"
+    secondaryAccent="red"
+    secondaryVariant="primary"
     phoneLabel="+7 914 887-92-45"
     phoneHref="tel:+79148879245"
   />
