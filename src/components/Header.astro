@@ -2,12 +2,12 @@
 import { Icon } from "astro-icon/components";
 
 const baseUrl = import.meta.env.BASE_URL;
-const withBase = (path: string) => `${baseUrl}${path.replace(/^\//, "")}`;
+const withBase = (path: string) => `${baseUrl.replace(/\/$/, "")}/${path.replace(/^\//, "")}`;
 
 const navItems = [
   { href: withBase("/"), label: "Главная" },
   { href: withBase("/kristina"), label: "Кристина" },
-  { href: withBase("/ivan"), label: "Роман" },
+  { href: withBase("/roman"), label: "Роман" },
   { href: withBase("/#contact"), label: "Контакты" }
 ];
 ---
