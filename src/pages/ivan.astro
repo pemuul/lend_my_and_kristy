@@ -3,6 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Section from "../components/Section.astro";
 import ServicesGrid from "../components/ServicesGrid.astro";
 import StepsTimeline from "../components/StepsTimeline.astro";
+import romanPhoto from "../images/Roman.jpeg";
 
 const title = "Роман — автоматизация, ИИ и интеграции";
 const description = "Интеграционный инженер: автоматизация процессов, связки 1С/CRM/сайтов/ботов, интеллектуальные решения и MVP.";
@@ -19,19 +20,30 @@ const withBase = (path: string) => `${baseUrl}${path.replace(/^\//, "")}`;
           style={`background-image: url('${withBase("/patterns/circuit-blue.svg")}');`}
           aria-hidden="true"
         ></div>
-        <div class="relative z-10 max-w-3xl">
-          <h1 class="text-3xl font-semibold text-text sm:text-4xl lg:text-5xl">Автоматизация + ИИ + Интеграции под ключ</h1>
-          <div class="mt-4 space-y-4 text-base text-muted sm:text-lg">
-            <p>
-              Я интеграционный инженер с более чем 6-летним опытом. Помогаю бизнесу оптимизировать процессы, соединяя разрозненные системы в единый эффективно работающий механизм. Мой подход — это не просто интеграция, а создание интеллектуальных решений, которые приносят измеримый результат.
-            </p>
-            <p>
-              Я специализируюсь на связках 1С, CRM-систем, веб-сайтов, чат-ботов и API, используя современные технологии n8n и Python. В работе применяю REST/Webhooks/SQL и интеграции с Telegram, WhatsApp, VK и платформами вроде MAX.
-            </p>
+        <div class="relative z-10 grid gap-6 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+          <div class="max-w-3xl">
+            <h1 class="text-3xl font-semibold text-text sm:text-4xl lg:text-5xl">Автоматизация + ИИ + Интеграции под ключ</h1>
+            <div class="mt-4 space-y-4 text-base text-muted sm:text-lg">
+              <p>
+                Я интеграционный инженер с более чем 6-летним опытом. Помогаю бизнесу оптимизировать процессы, соединяя разрозненные системы в единый эффективно работающий механизм. Мой подход — это не просто интеграция, а создание интеллектуальных решений, которые приносят измеримый результат.
+              </p>
+              <p>
+                Я специализируюсь на связках 1С, CRM-систем, веб-сайтов, чат-ботов и API, используя современные технологии n8n и Python. В работе применяю REST/Webhooks/SQL и интеграции с Telegram, WhatsApp, VK и платформами вроде MAX.
+              </p>
+            </div>
+            <div class="mt-6 flex flex-col gap-3 sm:flex-row">
+              <a class="button button-primary focus-ring" href="TODO: telegram link">Обсудить задачу</a>
+              <a class="button button-secondary focus-ring" href={withBase("/")}>На главную</a>
+            </div>
           </div>
-          <div class="mt-6 flex flex-col gap-3 sm:flex-row">
-            <a class="button button-primary focus-ring" href="TODO: telegram link">Обсудить задачу</a>
-            <a class="button button-secondary focus-ring" href={withBase("/")}>На главную</a>
+          <div class="overflow-hidden rounded-3xl border border-white/10 shadow-2xl">
+            <img
+              src={romanPhoto}
+              alt="Роман"
+              class="h-64 w-full object-cover sm:h-72 lg:h-80"
+              loading="lazy"
+              decoding="async"
+            />
           </div>
         </div>
       </div>
