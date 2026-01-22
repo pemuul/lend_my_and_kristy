@@ -1,0 +1,31 @@
+---
+interface Props {
+  name: string;
+  role: string;
+  bullets: string[];
+  cta: string;
+  secondary?: string;
+  href: string;
+  secondaryHref?: string;
+}
+
+const { name, role, bullets, cta, secondary, href, secondaryHref } = Astro.props;
+---
+<div class="card-surface p-6">
+  <h3 class="text-xl font-semibold text-text">{name}</h3>
+  <p class="mt-2 text-sm text-muted">{role}</p>
+  <ul class="mt-4 space-y-2 text-sm text-muted">
+    {bullets.map((item) => (
+      <li class="flex items-start gap-2">
+        <span class="mt-1 h-2 w-2 rounded-full bg-accent"></span>
+        <span>{item}</span>
+      </li>
+    ))}
+  </ul>
+  <div class="mt-6 flex flex-col gap-3 sm:flex-row">
+    <a class="button button-primary focus-ring" href={href}>{cta}</a>
+    {secondary && (
+      <a class="button button-secondary focus-ring" href={secondaryHref}>{secondary}</a>
+    )}
+  </div>
+</div>

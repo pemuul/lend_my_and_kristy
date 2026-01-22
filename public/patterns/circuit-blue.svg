@@ -1,0 +1,12 @@
+<svg width="640" height="640" viewBox="0 0 640 640" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g opacity="0.8" stroke="#3B82F6" stroke-width="1">
+    <path d="M60 80H220V140H380" />
+    <path d="M120 200H320V260H520" />
+    <path d="M80 360H240V420H480" />
+    <path d="M180 480H340V540H560" />
+    <circle cx="220" cy="140" r="6" fill="#3B82F6" />
+    <circle cx="320" cy="260" r="6" fill="#3B82F6" />
+    <circle cx="240" cy="420" r="6" fill="#3B82F6" />
+    <circle cx="340" cy="540" r="6" fill="#3B82F6" />
+  </g>
+</svg>

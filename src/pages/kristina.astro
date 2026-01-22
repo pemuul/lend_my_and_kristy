@@ -1,0 +1,82 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Section from "../components/Section.astro";
+import ServicesGrid from "../components/ServicesGrid.astro";
+import ContactCTA from "../components/ContactCTA.astro";
+
+const title = "Кристина Дементьева — продюсирование и сообщества";
+const description = "Продюсирование и управляемые сообщества. Системный маркетинг без магии.";
+const canonical = "https://example.com/kristina";
+---
+<BaseLayout title={title} description={description} canonical={canonical} accent="red">
+  <section class="section-spacing pt-10">
+    <div class="container-tight">
+      <div class="card-surface relative overflow-hidden p-8 sm:p-12">
+        <div
+          class="pattern-bg absolute right-0 top-0 h-full w-full"
+          style="background-image: url('/patterns/circuit-red.svg');"
+          aria-hidden="true"
+        ></div>
+        <div class="relative z-10 max-w-2xl">
+          <h1 class="text-3xl font-semibold text-text sm:text-4xl lg:text-5xl">Кристина Дементьева</h1>
+          <p class="mt-3 text-base text-muted sm:text-lg">
+            Продюсирование и управляемые сообщества. Системный маркетинг без “магии”.
+          </p>
+          <p class="mt-4 text-sm text-muted">
+            «Я не вдохновляю — я показываю путь. Я не обещаю результат — я его проектирую»
+          </p>
+          <div class="mt-6 flex flex-col gap-3 sm:flex-row">
+            <a class="button button-primary focus-ring" href="TODO: telegram link">Запросить консультацию</a>
+            <a class="button button-secondary focus-ring" href="/">На главную</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Section title="Результат рождается из структуры">
+    <div class="reveal max-w-3xl text-base text-muted sm:text-lg">
+      <p>
+        В 2006 году Кристина Дементьева разогнала газету «Подмосковье плюс» с 8 до 16 полос за полгода — и это стало первым осознанием: результат рождается из структуры. Дальше — постоянная эволюция, глубина и системность.
+      </p>
+    </div>
+  </Section>
+
+  <Section title="Опыт и развитие">
+    <ul class="space-y-4 text-base text-muted sm:text-lg">
+      <li class="reveal">1) Строила стратегии и работала с международными компаниями (Siemens, Samsung, Bayer, Pfizer).</li>
+      <li class="reveal">2) Перешла от “бренд-менеджмента” к смыслам: проекты и бизнес-сети, где маркетинг — это жизнь, а не только цифры.</li>
+      <li class="reveal">3) Углубилась в психологию и командную динамику, запустила собственные бренды и управляла десятками SMM-проектов.</li>
+    </ul>
+  </Section>
+
+  <Section title="Фокус сегодня">
+    <div class="reveal max-w-3xl text-base text-muted sm:text-lg">
+      <p>
+        Сегодня фокус — продюсирование и управляемые сообщества. Кристина соединяет несколько образований (от программирования до психологии), авторские методики и аппаратный комплекс «Детектрон», чтобы создавать живые работающие системы — не просто проекты.
+      </p>
+    </div>
+  </Section>
+
+  <Section title="Работаю с">
+    <ServicesGrid
+      columns={2}
+      items={[
+        "Личные бренды и бренды среднего размера",
+        "Контент-маркетинг (YouTube, RuTube, Telegram)",
+        "Таргетированная реклама",
+        "Аналитика и стратегия продвижения",
+        "Продажи через социальные сети"
+      ]}
+    />
+  </Section>
+
+  <ContactCTA
+    title="Нужна система, а не “разовые посты”?"
+    text="Напишите — предложу понятный план действий и формат работы."
+    primaryLabel="Связаться в Telegram"
+    primaryHref="TODO: telegram link"
+    secondaryLabel="Написать на почту"
+    secondaryHref="mailto:TODO"
+  />
+</BaseLayout>

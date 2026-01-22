@@ -1,0 +1,81 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SplitHero from "../components/SplitHero.astro";
+import Section from "../components/Section.astro";
+import FeatureGrid from "../components/FeatureGrid.astro";
+import ContactCTA from "../components/ContactCTA.astro";
+
+const title = "Окей Кристи Production — продюсирование и инженерия";
+const description = "Команда продюсирования, маркетинга и автоматизации. Выберите Кристину или Романа для персонального подхода.";
+const canonical = "https://example.com/";
+---
+<BaseLayout title={title} description={description} canonical={canonical} accent="blue">
+  <section class="section-spacing pt-10">
+    <div class="container-tight">
+      <div class="card-surface relative overflow-hidden p-8 sm:p-12">
+        <div
+          class="pattern-bg absolute right-0 top-0 h-full w-full"
+          style="background-image: url('/patterns/circuit-blue.svg');"
+          aria-hidden="true"
+        ></div>
+        <div class="relative z-10 max-w-2xl">
+          <p class="text-sm uppercase tracking-[0.3em] text-muted">Окей Кристи Production</p>
+          <h1 class="mt-4 text-3xl font-semibold text-text sm:text-4xl lg:text-5xl">
+            Маркетинг + продюсирование + автоматизация и интеграции
+          </h1>
+          <p class="mt-4 text-base text-muted sm:text-lg">
+            Выберите эксперта — Кристина отвечает за продюсирование и сообщества, Роман — за автоматизацию, ИИ и интеграции.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <SplitHero
+    left={{
+      accent: "blue",
+      title: "Роман — автоматизация, ИИ и интеграции",
+      subtitle:
+        "Автоматизация бизнес-процессов, интеграции 1С/CRM/сайтов/ботов, надёжные контуры данных, MVP быстро и без хаоса.",
+      bullets: [
+        "n8n + Python, REST/Webhooks/SQL",
+        "1С ↔ CRM ↔ сайт ↔ мессенджеры",
+        "OCR/IDP, боты и ИИ-агенты"
+      ],
+      cta: "Перейти на страницу Романа",
+      secondary: "Написать",
+      href: "/ivan"
+    }}
+    right={{
+      accent: "red",
+      title: "Кристина Дементьева — продюсирование и управляемые сообщества",
+      quote: "«Я не вдохновляю — я показываю путь. Я не обещаю результат — я его проектирую»",
+      bullets: [
+        "Контент-маркетинг: YouTube / RuTube / Telegram",
+        "Таргет + аналитика + стратегия продвижения",
+        "Продажи через соцсети и системные проекты"
+      ],
+      cta: "Перейти на страницу Кристины",
+      secondary: "Написать",
+      href: "/kristina"
+    }}
+  />
+
+  <Section
+    title="Команда: продюсирование + инженерия"
+    subtitle="Мы объединяем системный маркетинг и инженерный подход: создаём понятную стратегию, упаковываем продукт и подключаем автоматизацию так, чтобы результат был измеримым и масштабируемым."
+  >
+    <FeatureGrid
+      items={["Стратегия и упаковка", "Контент и продвижение", "Автоматизация и интеграции"]}
+    />
+  </Section>
+
+  <ContactCTA
+    title="Хотите обсудить задачу?"
+    text="Напишите нам — подскажем следующий шаг и предложим формат работы."
+    primaryLabel="Связаться в Telegram"
+    primaryHref="TODO: telegram link"
+    secondaryLabel="Написать на почту"
+    secondaryHref="mailto:TODO"
+  />
+</BaseLayout>
