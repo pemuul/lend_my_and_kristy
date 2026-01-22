@@ -1,0 +1,57 @@
+---
+import { Icon } from "astro-icon/components";
+
+const navItems = [
+  { href: "/", label: "Главная" },
+  { href: "/kristina", label: "Кристина" },
+  { href: "/ivan", label: "Роман" },
+  { href: "#contact", label: "Контакты" }
+];
+---
+<header class="w-full border-b border-stroke/60 bg-bg/90 backdrop-blur">
+  <div class="container-tight flex items-center justify-between py-4">
+    <a href="/" class="text-lg font-semibold tracking-tight focus-ring">
+      Окей Кристи Production
+    </a>
+    <nav class="hidden items-center gap-6 text-sm font-medium text-muted lg:flex">
+      {navItems.map((item) => (
+        <a class="hover:text-text transition-colors focus-ring" href={item.href}>
+          {item.label}
+        </a>
+      ))}
+    </nav>
+    <button
+      class="lg:hidden flex h-11 w-11 items-center justify-center rounded-full border border-stroke/70 focus-ring"
+      aria-label="Открыть меню"
+      data-menu-toggle
+      type="button"
+    >
+      <Icon name="lucide:menu" class="h-5 w-5" aria-hidden="true" />
+    </button>
+  </div>
+  <div
+    class="fixed inset-0 z-40 hidden bg-bg/95 backdrop-blur"
+    data-menu-overlay
+  >
+    <div class="container-tight flex h-full flex-col gap-6 py-10">
+      <div class="flex items-center justify-between">
+        <span class="text-lg font-semibold">Меню</span>
+        <button
+          class="flex h-11 w-11 items-center justify-center rounded-full border border-stroke/70 focus-ring"
+          aria-label="Закрыть меню"
+          data-menu-close
+          type="button"
+        >
+          <Icon name="lucide:x" class="h-5 w-5" aria-hidden="true" />
+        </button>
+      </div>
+      <nav class="flex flex-col gap-4 text-base font-medium">
+        {navItems.map((item) => (
+          <a class="focus-ring" href={item.href} data-menu-link>
+            {item.label}
+          </a>
+        ))}
+      </nav>
+    </div>
+  </div>
+</header>

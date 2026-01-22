@@ -1,0 +1,16 @@
+---
+interface Props {
+  items: string[];
+  columns?: number;
+}
+
+const { items, columns = 2 } = Astro.props;
+const colClass = columns === 3 ? "md:grid-cols-3" : columns === 4 ? "md:grid-cols-2 lg:grid-cols-4" : "md:grid-cols-2";
+---
+<div class={`grid gap-4 ${colClass}`}>
+  {items.map((item) => (
+    <div class="card-surface p-5 text-sm text-muted reveal">
+      <p class="text-base font-medium text-text">{item}</p>
+    </div>
+  ))}
+</div>
