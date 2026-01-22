@@ -7,6 +7,11 @@ import ContactCTA from "../components/ContactCTA.astro";
 const title = "Кристина Дементьева — продюсирование и сообщества";
 const description = "Продюсирование и управляемые сообщества. Системный маркетинг без магии.";
 const canonical = "https://example.com/kristina";
+const baseUrl = import.meta.env.BASE_URL;
+const withBase = (path: string) => {
+  const normalizedPath = path.startsWith("/") ? path : `/${path}`;
+  return `${baseUrl.replace(/\/$/, "")}${normalizedPath}`;
+};
 ---
 <BaseLayout title={title} description={description} canonical={canonical} accent="red">
   <section class="section-spacing pt-10">
@@ -14,7 +19,7 @@ const canonical = "https://example.com/kristina";
       <div class="card-surface relative overflow-hidden p-8 sm:p-12">
         <div
           class="pattern-bg absolute right-0 top-0 h-full w-full"
-          style="background-image: url('/patterns/circuit-red.svg');"
+          style={`background-image: url('${withBase("/patterns/circuit-red.svg")}');`}
           aria-hidden="true"
         ></div>
         <div class="relative z-10 max-w-2xl">
@@ -27,7 +32,7 @@ const canonical = "https://example.com/kristina";
           </p>
           <div class="mt-6 flex flex-col gap-3 sm:flex-row">
             <a class="button button-primary focus-ring" href="TODO: telegram link">Запросить консультацию</a>
-            <a class="button button-secondary focus-ring" href="/">На главную</a>
+            <a class="button button-secondary focus-ring" href={withBase("/")}>На главную</a>
           </div>
         </div>
       </div>

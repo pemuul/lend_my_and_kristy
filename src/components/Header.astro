@@ -1,16 +1,22 @@
 ---
 import { Icon } from "astro-icon/components";
 
+const baseUrl = import.meta.env.BASE_URL;
+const withBase = (path: string) => {
+  const normalizedPath = path.startsWith("/") ? path : `/${path}`;
+  return `${baseUrl.replace(/\/$/, "")}${normalizedPath}`;
+};
+
 const navItems = [
-  { href: "/", label: "Главная" },
-  { href: "/kristina", label: "Кристина" },
-  { href: "/ivan", label: "Роман" },
-  { href: "#contact", label: "Контакты" }
+  { href: withBase("/"), label: "Главная" },
+  { href: withBase("/kristina"), label: "Кристина" },
+  { href: withBase("/ivan"), label: "Роман" },
+  { href: withBase("/#contact"), label: "Контакты" }
 ];
 ---
 <header class="w-full border-b border-stroke/60 bg-bg/90 backdrop-blur">
   <div class="container-tight flex items-center justify-between py-4">
-    <a href="/" class="text-lg font-semibold tracking-tight focus-ring">
+    <a href={withBase("/")} class="text-lg font-semibold tracking-tight focus-ring">
       Окей Кристи Production
     </a>
     <nav class="hidden items-center gap-6 text-sm font-medium text-muted lg:flex">
