@@ -1,15 +1,35 @@
 ---
-const year = "2026";
+const year = new Date().getFullYear();
 const baseUrl = import.meta.env.BASE_URL;
 const withBase = (path: string) => `${baseUrl.replace(/\/$/, "")}/${path.replace(/^\//, "")}`;
+const legalText = "ИП Дементьева Кристина Сергеевна · ОГРНИП 325710000025380";
 ---
-<footer class="border-t border-stroke/60">
-  <div class="container-tight flex flex-col gap-4 py-6 text-sm text-muted md:flex-row md:items-center md:justify-between">
-    <span>© {year} Окей Кристи Production</span>
-    <div class="flex gap-4">
-      <a href={withBase("/")} class="hover:text-text transition-colors focus-ring">Главная</a>
-      <a href={withBase("/contact")} class="hover:text-text transition-colors focus-ring">Контакты</a>
-      <a href="https://t.me/Pemuul" class="hover:text-text transition-colors focus-ring">Telegram Жданова Романа</a>
+<footer class="relative border-t border-stroke bg-bg-elevated">
+  <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-blue/40 to-transparent" aria-hidden="true"></div>
+  <div class="container-tight py-12">
+    <div class="grid gap-10 text-sm md:grid-cols-2 lg:grid-cols-3">
+      <div>
+        <p class="font-semibold text-text">{legalText}</p>
+        <p class="mt-2 text-xs leading-relaxed text-muted">Исследование и аудит организаций на соответствие внутренних систем современным тенденциям.</p>
+      </div>
+      <div>
+        <p class="font-semibold text-text">Контакты</p>
+        <ul class="mt-3 space-y-2 text-muted">
+          <li><a href="https://t.me/Pemiuul" class="hover:text-text transition-colors focus-ring">Telegram @Pemiuul</a></li>
+          <li><a href="tel:+79148879245" class="hover:text-text transition-colors focus-ring">+7 914 887-92-45</a></li>
+          <li><a href={withBase("/contact")} class="hover:text-text transition-colors focus-ring">Связаться</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="font-semibold text-text">Навигация</p>
+        <ul class="mt-3 flex flex-wrap gap-x-6 gap-y-2 text-muted">
+          <li><a href={withBase("/")} class="hover:text-text transition-colors focus-ring">Главная</a></li>
+          <li><a href={withBase("/about")} class="hover:text-text transition-colors focus-ring">Об исследовании</a></li>
+          <li><a href={withBase("/team")} class="hover:text-text transition-colors focus-ring">Команда</a></li>
+          <li><a href={withBase("/contact")} class="hover:text-text transition-colors focus-ring">Контакты</a></li>
+        </ul>
+      </div>
     </div>
+    <p class="mt-10 border-t border-stroke pt-6 text-xs text-muted">© {year} {legalText}</p>
   </div>
 </footer>

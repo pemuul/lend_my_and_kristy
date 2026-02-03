@@ -1,0 +1,40 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import { surveyUrls } from "../config/surveys";
+
+const baseUrl = import.meta.env.BASE_URL;
+const withBase = (path: string) => `${baseUrl.replace(/\/$/, "")}/${path.replace(/^\//, "")}`;
+
+const title = "Опросник для добывающих и промышленных компаний — Исследование ИИ и АСУ";
+const description = "Специализированный опросник для представителей добывающих и промышленных компаний. Исследование Лаборатории ИИ СКОЛКОВО.";
+const siteUrl = "https://pemuul.github.io/lend_my_and_kristy";
+const canonical = `${siteUrl}/survey-mining`;
+---
+<BaseLayout title={title} description={description} canonical={canonical} accent="blue">
+  <PageHero
+    overline="Отраслевой опросник"
+    title="Опросник для добывающих и промышленных компаний"
+    subtitle="Оборудование, геологоразведка, логистика, IoT и АСУ ТП."
+  />
+  <section class="section-spacing">
+    <div class="container-tight">
+      <div class="card-surface mx-auto max-w-3xl p-8 sm:p-12">
+        <div class="reveal space-y-6 text-muted">
+          <p class="text-base leading-relaxed sm:text-lg">
+            В этом опросе мы фокусируемся на применении ИИ и автоматизации в добывающей и промышленной отраслях: прогнозная аналитика состояния оборудования, геологоразведка и оптимизация добычи, логистика и цепочки поставок, мониторинг безопасности и экологии, интеграция данных с IoT и АСУ ТП.
+          </p>
+          <p class="text-base">
+            Заполнение займёт 10–15 минут. В благодарность вы получите бесплатную 30-минутную консультацию от экспертов лаборатории. После отправки с вами свяжутся в течение 2–3 рабочих дней.
+          </p>
+        </div>
+        <a
+          href={surveyUrls.mining}
+          class="button button-primary mt-10 inline-flex focus-ring text-base px-8 py-4"
+        >
+          Перейти к опроснику
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

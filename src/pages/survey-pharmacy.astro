@@ -1,0 +1,40 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import { surveyUrls } from "../config/surveys";
+
+const baseUrl = import.meta.env.BASE_URL;
+const withBase = (path: string) => `${baseUrl.replace(/\/$/, "")}/${path.replace(/^\//, "")}`;
+
+const title = "Опросник для аптечных сетей и фармацевтики — Исследование ИИ и АСУ";
+const description = "Специализированный опросник для представителей аптечных сетей и фармацевтики. Исследование Лаборатории ИИ СКОЛКОВО.";
+const siteUrl = "https://pemuul.github.io/lend_my_and_kristy";
+const canonical = `${siteUrl}/survey-pharmacy`;
+---
+<BaseLayout title={title} description={description} canonical={canonical} accent="blue">
+  <PageHero
+    overline="Отраслевой опросник"
+    title="Опросник для аптечных сетей и фармацевтики"
+    subtitle="Учёт и прогнозирование остатков, рецепты и ОМС, персонализация, 152-ФЗ."
+  />
+  <section class="section-spacing">
+    <div class="container-tight">
+      <div class="card-surface mx-auto max-w-3xl p-8 sm:p-12">
+        <div class="reveal space-y-6 text-muted">
+          <p class="text-base leading-relaxed sm:text-lg">
+            В этом опросе мы фокусируемся на применении ИИ и автоматизации в аптечных сетях и фармацевтической отрасли: учёт и прогнозирование остатков, работа с рецептами и ОМС, персонализация коммуникаций с клиентами, соответствие требованиям к хранению данных (152-ФЗ) и другие задачи.
+          </p>
+          <p class="text-base">
+            Заполнение займёт 10–15 минут. В благодарность вы получите бесплатную 30-минутную консультацию от экспертов лаборатории. После отправки с вами свяжутся в течение 2–3 рабочих дней.
+          </p>
+        </div>
+        <a
+          href={surveyUrls.pharmacy}
+          class="button button-primary mt-10 inline-flex focus-ring text-base px-8 py-4"
+        >
+          Перейти к опроснику
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,69 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+
+import romanPhoto from "../images/Roman.jpeg";
+import kristyPhoto from "../images/Kristy.jpeg";
+
+const baseUrl = import.meta.env.BASE_URL;
+const withBase = (path: string) => `${baseUrl.replace(/\/$/, "")}/${path.replace(/^\//, "")}`;
+
+const title = "Команда — Исследование интеграции ИИ и АСУ";
+const description = "Эксперты исследования: Жданов Роман и Дементьева Кристина. Лаборатория ИИ СКОЛКОВО.";
+const siteUrl = "https://pemuul.github.io/lend_my_and_kristy";
+const canonical = `${siteUrl}/team`;
+---
+<BaseLayout title={title} description={description} canonical={canonical} accent="blue">
+  <PageHero
+    overline="Команда"
+    title="Эксперты, проводящие исследование"
+    subtitle="Мы проводим интервью, анализируем данные и готовим отраслевые отчёты."
+  />
+  <section class="section-spacing">
+    <div class="container-tight">
+      <div class="grid gap-10 md:grid-cols-2">
+        <div class="card-surface overflow-hidden reveal">
+          <div class="team-photo-wrap relative w-full">
+            <img
+              src={romanPhoto.src}
+              alt="Жданов Роман"
+              width={romanPhoto.width}
+              height={romanPhoto.height}
+            />
+            <div class="absolute inset-0 ring-2 ring-inset ring-white/10 pointer-events-none" aria-hidden="true"></div>
+          </div>
+          <div class="p-6 sm:p-8">
+            <h2 class="text-xl font-bold text-text">Жданов Роман</h2>
+            <p class="mt-1 text-sm font-medium text-muted">Интеграционный инженер</p>
+            <p class="mt-4 text-sm leading-relaxed text-muted">
+              Эксперт по внедрению on-prem ИИ-решений, архитектуре безопасных контуров, автоматизации процессов разработки.
+            </p>
+            <a href="https://t.me/Pemiuul" class="button button-secondary mt-6 focus-ring">Написать в Telegram</a>
+          </div>
+        </div>
+        <div class="card-surface overflow-hidden reveal">
+          <div class="team-photo-wrap relative w-full">
+            <img
+              src={kristyPhoto.src}
+              alt="Дементьева Кристина"
+              width={kristyPhoto.width}
+              height={kristyPhoto.height}
+            />
+            <div class="absolute inset-0 ring-2 ring-inset ring-white/10 pointer-events-none" aria-hidden="true"></div>
+          </div>
+          <div class="p-6 sm:p-8">
+            <h2 class="text-xl font-bold text-text">Дементьева Кристина</h2>
+            <p class="mt-1 text-sm font-medium text-muted">Руководитель исследования, ИП</p>
+            <p class="mt-4 text-sm leading-relaxed text-muted">
+              Специалист по анализу бизнес-процессов, исследованию цифровых трендов, построению стратегий интеграции новых технологий в операционную деятельность.
+            </p>
+            <a href="https://t.me/Pemiuul" class="button button-secondary mt-6 focus-ring">Написать в Telegram</a>
+          </div>
+        </div>
+      </div>
+      <p class="mt-12 text-center">
+        <a href={withBase("/")} class="button button-primary focus-ring">Вернуться на главную</a>
+      </p>
+    </div>
+  </section>
+</BaseLayout>

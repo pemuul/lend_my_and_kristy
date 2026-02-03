@@ -1,0 +1,16 @@
+---
+interface Props {
+  overline: string;
+  title: string;
+  subtitle?: string;
+}
+const { overline, title, subtitle } = Astro.props;
+---
+<section class="relative overflow-hidden bg-mesh py-16 sm:py-20">
+  <div class="glow-orb top-0 right-0 h-64 w-64 bg-blue/15" aria-hidden="true"></div>
+  <div class="container-tight relative z-10">
+    <p class="overline reveal">{overline}</p>
+    <h1 class="mt-4 text-3xl font-bold tracking-tight text-text reveal sm:text-4xl lg:text-5xl">{title}</h1>
+    {subtitle && <p class="mt-4 max-w-2xl text-lg text-muted reveal">{subtitle}</p>}
+  </div>
+</section>

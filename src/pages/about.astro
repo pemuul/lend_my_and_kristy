@@ -1,0 +1,40 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+
+const baseUrl = import.meta.env.BASE_URL;
+const withBase = (path: string) => `${baseUrl.replace(/\/$/, "")}/${path.replace(/^\//, "")}`;
+
+const title = "Об исследовании — Лаборатория ИИ СКОЛКОВО";
+const description = "Подробнее об исследовании интеграции ИИ и АСУ в российском бизнесе. Фокус: аптечные сети, добывающие и инвестиционные компании.";
+const siteUrl = "https://pemuul.github.io/lend_my_and_kristy";
+const canonical = `${siteUrl}/about`;
+---
+<BaseLayout title={title} description={description} canonical={canonical} accent="blue">
+  <PageHero
+    overline="Об исследовании"
+    title="Исследование интеграции ИИ и АСУ в компании"
+    subtitle="Масштабное исследование от Лаборатории ИИ Школы управления СКОЛКОВО."
+  />
+  <section class="section-spacing">
+    <div class="container-tight">
+      <div class="card-surface p-8 sm:p-10 max-w-3xl">
+        <div class="reveal space-y-6 text-base leading-relaxed text-muted sm:text-lg">
+          <p>
+            Исследование посвящено тому, как российские компании внедряют нейросети и автоматизированные системы управления. Цель — выявить лучшие практики, барьеры и создать карту возможностей.
+          </p>
+          <p>
+            В фокусе февраля — три отрасли: аптечные сети и фармацевтика, добывающие и промышленные компании, частные инвестиционные и финансовые организации. Для каждой отрасли подготовлен специализированный опросник.
+          </p>
+          <p>
+            Участники получают бесплатную 30-минутную консультацию от экспертов лаборатории. Для наиболее заинтересованных доступен углублённый аудит за 30 000 ₽.
+          </p>
+        </div>
+        <div class="mt-10 flex flex-wrap gap-4 reveal">
+          <a href={withBase("/")} class="button button-primary focus-ring">Участвовать в исследовании</a>
+          <a href={withBase("/team")} class="button button-secondary focus-ring">Команда</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

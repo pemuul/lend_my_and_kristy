@@ -42,49 +42,52 @@ const {
     <meta name="twitter:description" content={ogDescription} />
     <meta name="twitter:image" content={ogImage} />
     <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
     <link rel="icon" href={`${baseUrl}favicon.svg`} type="image/svg+xml" />
     <link rel="icon" href={`${baseUrl}favicon.ico`} sizes="any" />
     <link rel="icon" href={`${baseUrl}favicon-96x96.png`} type="image/png" sizes="96x96" />
     <link rel="apple-touch-icon" href={`${baseUrl}apple-touch-icon.png`} />
-    <meta name="theme-color" content="#070A10" />
+    <meta name="theme-color" content="#05070b" />
   </head>
   <body style={`--accent: var(--${accent});`} class="bg-bg text-text">
     <Header />
-    <main>
+    <main class="main-with-fixed-header">
       <slot />
     </main>
     <Footer />
     <script type="module">
       const overlay = document.querySelector('[data-menu-overlay]');
       const toggle = document.querySelector('[data-menu-toggle]');
-      const close = document.querySelector('[data-menu-close]');
+      const closeButtons = document.querySelectorAll('[data-menu-close]');
       const links = document.querySelectorAll('[data-menu-link]');
       const menuContent = document.querySelector('[data-menu-content]');
 
       const closeMenu = () => {
-        overlay?.classList.add('hidden');
+        overlay?.classList.remove('is-open');
         document.body.style.overflow = '';
         document.body.classList.remove('menu-open');
       };
 
       toggle?.addEventListener('click', () => {
-        overlay?.classList.remove('hidden');
-        document.body.style.overflow = 'hidden';
-        document.body.classList.add('menu-open');
+        const isOpen = overlay?.classList.contains('is-open');
+        if (isOpen) closeMenu();
+        else {
+          overlay?.classList.add('is-open');
+          document.body.style.overflow = 'hidden';
+          document.body.classList.add('menu-open');
+        }
       });
 
-      close?.addEventListener('click', closeMenu);
+      closeButtons.forEach((btn) => btn.addEventListener('click', closeMenu));
       links.forEach((link) => link.addEventListener('click', closeMenu));
       overlay?.addEventListener('click', (event) => {
-        if (event.target === overlay) {
-          closeMenu();
-        }
+        if (event.target === overlay) closeMenu();
       });
       menuContent?.addEventListener('click', (event) => event.stopPropagation());
       document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape') {
-          closeMenu();
-        }
+        if (event.key === 'Escape') closeMenu();
       });
 
       const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

@@ -1,47 +1,37 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import ContactCTA from "../components/ContactCTA.astro";
+import PageHero from "../components/PageHero.astro";
 
-const title = "Контакты — Окей Кристи Production";
-const description = "Свяжитесь с командой Окей Кристи Production: Telegram и форма заявки.";
+const baseUrl = import.meta.env.BASE_URL;
+const withBase = (path: string) => `${baseUrl.replace(/\/$/, "")}/${path.replace(/^\//, "")}`;
+
+const title = "Контакты — Исследование ИИ и АСУ";
+const description = "Свяжитесь с командой исследования: Telegram, телефон, заявка на аудит.";
 const siteUrl = "https://pemuul.github.io/lend_my_and_kristy";
 const canonical = `${siteUrl}/contact`;
 const ogImage = `${siteUrl}/og/og-contact.svg`;
 ---
 <BaseLayout title={title} description={description} canonical={canonical} ogImage={ogImage} accent="blue">
-  <section class="section-spacing pt-10">
+  <PageHero overline="Контакты" title="Свяжитесь с нами" subtitle="Ответим в течение 2–3 рабочих дней." />
+  <section class="section-spacing">
     <div class="container-tight">
-      <div class="card-surface p-8 sm:p-12">
-        <div class="reveal max-w-2xl">
-          <p class="text-sm uppercase tracking-[0.3em] text-muted">Контакты</p>
-          <h1 class="mt-4 text-3xl font-semibold text-text sm:text-4xl">Давайте обсудим задачу</h1>
-          <p class="mt-4 text-base text-muted sm:text-lg">
-            Напишите в удобный канал — мы ответим в течение 2–4 часов и предложим следующий шаг.
+      <div class="card-surface p-8 sm:p-12 max-w-2xl">
+        <div class="reveal">
+          <p class="text-base text-muted sm:text-lg">
+            Напишите в удобный канал или оставьте заявку на аудит за 30 000 ₽. Форму сбора заявок можно подключить через n8n.
           </p>
-          <div class="mt-6 flex flex-col gap-3 sm:flex-row">
-            <a class="button button-primary focus-ring" href="https://t.me/Pemuul">Написать Жданову Роману</a>
-            <a class="button button-primary focus-ring" style="--accent: var(--red);" href="https://t.me/Okay_kristi">
-              Написать Дементьевой Кристине
-            </a>
+          <div class="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
+            <a class="button button-primary focus-ring" href="https://t.me/Pemiuul">Telegram @Pemiuul</a>
+            <a class="button button-secondary focus-ring" href="tel:+79148879245">+7 914 887-92-45</a>
           </div>
-          <p class="mt-4 text-sm text-muted">
-            Телефон Жданова Романа: <a class="text-text underline decoration-dotted" href="tel:+79148879245">+7 914 887-92-45</a>
-          </p>
+          <div class="mt-10 rounded-xl border border-stroke bg-white/5 p-5">
+            <p class="font-semibold text-text">Подать заявку на аудит за 30 000 ₽</p>
+            <p class="mt-2 text-sm text-muted">
+              Напишите в Telegram или по телефону. Либо укажите в опроснике интерес к аудиту — с вами свяжутся после обработки ответов.
+            </p>
+          </div>
         </div>
       </div>
     </div>
   </section>
-
-  <ContactCTA
-    title="Оставьте заявку"
-    text="Опишите задачу, а мы подготовим план действий и варианты сотрудничества."
-    primaryLabel="Написать Жданову Роману в Telegram"
-    primaryHref="https://t.me/Pemuul"
-    secondaryLabel="Написать Дементьевой Кристине в Telegram"
-    secondaryHref="https://t.me/Okay_kristi"
-    secondaryAccent="red"
-    secondaryVariant="primary"
-    phoneLabel="+7 914 887-92-45"
-    phoneHref="tel:+79148879245"
-  />
 </BaseLayout>

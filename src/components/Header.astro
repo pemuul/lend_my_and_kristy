@@ -3,31 +3,33 @@ import { Icon } from "astro-icon/components";
 
 const baseUrl = import.meta.env.BASE_URL;
 const withBase = (path: string) => `${baseUrl.replace(/\/$/, "")}/${path.replace(/^\//, "")}`;
-const basePath = baseUrl.replace(/\/$/, "");
-const currentPath = Astro.url.pathname.replace(basePath, "") || "/";
+const basePath = baseUrl.replace(/\/$/, "") || "";
+const pathname = Astro.url.pathname;
+const currentPath = basePath ? pathname.replace(new RegExp(`^${basePath}`), "") || "/" : pathname || "/";
 
 const navItems = [
   { href: withBase("/"), label: "Главная", path: "/" },
-  { href: withBase("/kristina"), label: "Дементьева Кристина", path: "/kristina" },
-  { href: withBase("/roman"), label: "Жданов Роман", path: "/roman" },
-  { href: withBase("/contact"), label: "Контакты", path: "/contact" }
+  { href: withBase("/about"), label: "Об исследовании", path: "/about" },
+  { href: withBase("/team"), label: "Команда", path: "/team" },
+  { href: withBase("/contact"), label: "Контакты", path: "/contact" },
 ];
 ---
-<header class="site-header sticky top-0 z-40 w-full">
-  <div class="container-tight flex flex-wrap items-center gap-4 py-3 sm:py-4">
-    <a href={withBase("/")} class="flex flex-col items-start gap-1 text-left focus-ring">
-      <span class="text-lg font-semibold tracking-tight sm:text-xl">Окей Кристи Production</span>
-      <span class="text-xs uppercase tracking-[0.35em] text-muted">Маркетинг · Продюсирование · Автоматизация</span>
+<header class="site-header w-full">
+  <div class="container-header flex h-full items-center justify-between gap-6">
+    <a href={withBase("/")} class="header-logo focus-ring group flex flex-col items-start gap-0.5 rounded-xl py-1">
+      <span class="header-logo-text text-lg font-bold tracking-tight sm:text-xl">
+        Лаборатория ИИ СКОЛКОВО
+      </span>
+      <span class="text-[10px] font-medium uppercase tracking-[0.25em] text-muted sm:text-xs">Исследование ИИ и АСУ</span>
     </a>
-    <nav class="hidden items-center gap-2 text-sm font-medium lg:flex">
+
+    <nav class="hidden items-center gap-1 lg:flex">
       {navItems.map((item) => {
         const isActive = currentPath === item.path;
         return (
           <a
-            class={`rounded-full px-4 py-2 transition focus-ring ${
-              isActive
-                ? "bg-white/10 text-text shadow-[0_0_0_1px_rgba(255,255,255,0.08)]"
-                : "text-muted hover:bg-white/5 hover:text-text"
+            class={`nav-link rounded-lg px-4 py-2.5 text-sm font-medium transition focus-ring ${
+              isActive ? "text-text" : "text-muted hover:text-text"
             }`}
             href={item.href}
             aria-current={isActive ? "page" : undefined}
@@ -37,37 +39,38 @@ const navItems = [
         );
       })}
     </nav>
+
     <button
-      class="lg:hidden flex h-11 w-11 items-center justify-center rounded-full border border-stroke/70 bg-black/20 shadow-[0_10px_30px_rgba(0,0,0,0.25)] focus-ring"
+      class="header-burger-wrapper lg:hidden flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-text focus-ring transition hover:bg-white/10"
       aria-label="Открыть меню"
       data-menu-toggle
       type="button"
     >
-      <Icon name="lucide:menu" class="h-5 w-5" aria-hidden="true" />
+      <span class="header-burger" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
     </button>
   </div>
-  <div
-    class="fixed inset-0 z-[70] hidden bg-bg/95 backdrop-blur"
-    data-menu-overlay
-  >
-    <div class="container-tight flex h-full flex-col gap-6 py-10" data-menu-content>
-      <div class="flex items-center justify-between">
-        <span class="text-lg font-semibold">Меню</span>
-        <button
-          class="flex h-11 w-11 items-center justify-center rounded-full border border-stroke/70 bg-black/20 focus-ring"
-          aria-label="Закрыть меню"
-          data-menu-close
-          type="button"
-        >
-          <Icon name="lucide:x" class="h-5 w-5" aria-hidden="true" />
-        </button>
-      </div>
-      <nav class="flex flex-col gap-4 text-base font-medium">
+
+  <!-- Mobile menu: overlay + slide panel -->
+  <div class="mobile-menu-overlay" data-menu-overlay id="mobile-menu-overlay">
+    <div class="mobile-menu-panel relative" data-menu-content>
+      <button
+        type="button"
+        aria-label="Закрыть меню"
+        data-menu-close
+        class="absolute right-4 top-4 flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-text focus-ring hover:bg-white/10 lg:hidden"
+      >
+        <Icon name="lucide:x" class="h-5 w-5" aria-hidden="true" />
+      </button>
+      <nav class="flex flex-col gap-1">
         {navItems.map((item) => {
           const isActive = currentPath === item.path;
           return (
             <a
-              class={`focus-ring ${isActive ? "text-text" : ""}`}
+              class={`rounded-xl px-4 py-4 text-lg font-semibold transition focus-ring ${isActive ? "bg-white/10 text-text" : "text-muted hover:bg-white/5 hover:text-text"}`}
               href={item.href}
               data-menu-link
               aria-current={isActive ? "page" : undefined}
@@ -77,6 +80,9 @@ const navItems = [
           );
         })}
       </nav>
+      <div class="mt-auto border-t border-stroke pt-6">
+        <p class="text-xs font-medium uppercase tracking-wider text-muted">Исследование интеграции ИИ и АСУ</p>
+      </div>
     </div>
   </div>
 </header>

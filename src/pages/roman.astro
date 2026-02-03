@@ -55,13 +55,12 @@ const withBase = (path: string) => `${baseUrl.replace(/\/$/, "")}/${path.replace
               <a class="button button-secondary focus-ring" href={withBase("/")}>На главную</a>
             </div>
           </div>
-          <div class="overflow-hidden rounded-3xl border border-white/10 shadow-2xl">
+          <div class="team-photo-single">
             <img
               src={romanPhoto.src}
               alt="Жданов Роман"
-              class="h-64 w-full object-cover object-center sm:h-72 lg:h-80"
-              width="640"
-              height="640"
+              width={romanPhoto.width}
+              height={romanPhoto.height}
               loading="lazy"
               decoding="async"
             />
