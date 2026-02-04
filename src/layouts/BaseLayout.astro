@@ -108,6 +108,34 @@ const {
       } else {
         document.querySelectorAll('.reveal').forEach((el) => el.classList.add('is-visible'));
       }
+
+      // Active nav link from actual URL (fixes production base path / trailing slash)
+      (function setActiveNav() {
+        const header = document.querySelector('.site-header');
+        if (!header) return;
+        const basePath = (header.getAttribute('data-base-path') || '').replace(/\/$/, '');
+        let pathname = window.location.pathname || '/';
+        if (basePath && pathname.startsWith(basePath)) {
+          pathname = pathname.slice(basePath.length) || '/';
+        }
+        const currentPath = ('/' + pathname.replace(/^\/+|\/+$/g, '').replace(/\/index\.html$/i, '')).replace(/\/+/g, '/') || '/';
+        document.querySelectorAll('.site-header [data-nav-path]').forEach((a) => {
+          const path = a.getAttribute('data-nav-path') || '';
+          const isActive = currentPath === path || (currentPath === '/' && path === '/');
+          if (isActive) a.setAttribute('aria-current', 'page');
+          else a.removeAttribute('aria-current');
+          const isMobileLink = a.hasAttribute('data-menu-link');
+          if (isActive) {
+            a.classList.add('text-text');
+            a.classList.remove('text-muted');
+            if (isMobileLink) a.classList.add('bg-white/10');
+          } else {
+            a.classList.remove('text-text');
+            a.classList.add('text-muted');
+            if (isMobileLink) a.classList.remove('bg-white/10');
+          }
+        });
+      })();
     </script>
   </body>
 </html>

@@ -17,7 +17,7 @@ const navItems = [
 const auditHref = `${withBase("/")}#audit`;
 const legalLine = "ИП Дементьева К.С. · ОГРНИП 325710000025380";
 ---
-<header class="site-header w-full">
+<header class="site-header w-full" data-base-path={basePath}>
   <div class="container-header flex h-full items-center justify-between gap-6">
     <div class="header-logo-block flex flex-col items-start gap-0.5">
       <a href={withBase("/")} class="header-logo focus-ring group flex flex-col items-start gap-0.5 rounded-xl py-1">
@@ -38,6 +38,7 @@ const legalLine = "ИП Дементьева К.С. · ОГРНИП 325710000025
               isActive ? "text-text" : "text-muted hover:text-text"
             }`}
             href={item.href}
+            data-nav-path={item.path}
             aria-current={isActive ? "page" : undefined}
           >
             {item.label}
@@ -84,6 +85,7 @@ const legalLine = "ИП Дементьева К.С. · ОГРНИП 325710000025
             <a
               class={`rounded-xl px-4 py-4 text-lg font-semibold transition focus-ring ${isActive ? "bg-white/10 text-text" : "text-muted hover:bg-white/5 hover:text-text"}`}
               href={item.href}
+              data-nav-path={item.path}
               data-menu-link
               aria-current={isActive ? "page" : undefined}
             >
