@@ -600,6 +600,54 @@ img {
   box-shadow: 0 24px 48px color-mix(in oklab, var(--card-accent) 15%, transparent);
 }
 
+/* Блок счётчика результатов исследования */
+.research-counter-card {
+  position: relative;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  padding: 2.5rem 2rem;
+  overflow: hidden;
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(59, 130, 246, 0.1),
+    0 0 40px rgba(59, 130, 246, 0.06);
+}
+
+@media (min-width: 768px) {
+  .research-counter-card {
+    padding: 3rem 3.5rem;
+  }
+}
+
+.research-counter-glow {
+  position: absolute;
+  top: -40%;
+  right: -20%;
+  width: 60%;
+  height: 80%;
+  background: radial-gradient(ellipse, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+  filter: blur(40px);
+  pointer-events: none;
+}
+
+.research-counter-number {
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #93c5fd 0%, #c4b5fd 60%, #a78bfa 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@media (min-width: 768px) {
+  .research-counter-number {
+    font-size: 4.5rem;
+  }
+}
+
 /* Единый блок фото в карточках команды — одинаковые пропорции для разных исходников */
 .team-photo-wrap {
   aspect-ratio: 3 / 4;

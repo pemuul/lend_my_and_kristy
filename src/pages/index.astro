@@ -123,6 +123,26 @@ const aiSpheres = [
     </div>
   </section>
 
+  <!-- Результаты исследования: счётчик -->
+  <section id="research-results" class="section-spacing" aria-labelledby="research-results-title">
+    <div class="container-tight">
+      <div class="research-counter-card reveal">
+        <div class="research-counter-glow" aria-hidden="true"></div>
+        <p class="overline mb-3">Результаты исследования</p>
+        <h2 id="research-results-title" class="text-2xl font-bold tracking-tight text-text sm:text-3xl">
+          Уже участвуют в исследовании
+        </h2>
+        <p class="mt-2 text-base text-muted sm:text-lg">
+          Количество заполнивших опросник продолжает расти. Присоединяйтесь.
+        </p>
+        <div class="mt-8 flex flex-wrap items-baseline gap-3 gap-y-2">
+          <span id="research-count" class="research-counter-number" aria-live="polite">0</span>
+          <span class="text-xl font-medium text-muted sm:text-2xl">участников</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Команда -->
   <Section id="komanda" title="Эксперты, проводящие исследование" subtitle="Мы проводим интервью, анализируем данные и готовим отраслевые отчёты." alt>
     <div class="grid gap-8 md:grid-cols-2">
@@ -198,4 +218,49 @@ const aiSpheres = [
       </div>
     </div>
   </section>
+
+  <script>
+    (function () {
+      const COUNT_URL = "https://nulnanuchittin.beget.app/webhook/recipment_count";
+      const DURATION_MS = 2200;
+      const EASE_OUT_QUART = (t) => 1 - Math.pow(1 - t, 4);
+
+      const section = document.getElementById("research-results");
+      const el = document.getElementById("research-count");
+      if (!section || !el) return;
+
+      let done = false;
+      const observer = new IntersectionObserver(
+        (entries) => {
+          const entry = entries[0];
+          if (!entry?.isIntersecting || done) return;
+          done = true;
+
+          fetch(COUNT_URL)
+            .then((r) => r.json())
+            .then((data) => {
+              const target = typeof data?.count === "number" ? Math.max(0, data.count) : 0;
+              const start = performance.now();
+
+              function tick(now) {
+                const elapsed = now - start;
+                const p = Math.min(elapsed / DURATION_MS, 1);
+                const eased = EASE_OUT_QUART(p);
+                const current = Math.round(eased * target);
+                el.textContent = String(current);
+                if (p < 1) requestAnimationFrame(tick);
+              }
+
+              requestAnimationFrame(tick);
+            })
+            .catch(() => {
+              el.textContent = "—";
+            });
+        },
+        { threshold: 0.2, rootMargin: "0px 0px -60px 0px" }
+      );
+
+      observer.observe(section);
+    })();
+  </script>
 </BaseLayout>
