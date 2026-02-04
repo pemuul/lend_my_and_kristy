@@ -199,13 +199,18 @@ img {
 
 /* ========== Header: fixed, wide, tech look ========== */
 :root {
-  --header-h: 76px;
+  --header-h: 82px;
 }
 
 @media (max-width: 1023px) {
   :root {
-    --header-h: 68px;
+    --header-h: 76px;
   }
+}
+
+.header-legal {
+  max-width: 320px;
+  letter-spacing: 0.02em;
 }
 
 .site-header {
@@ -280,6 +285,11 @@ img {
 .menu-open [data-menu-toggle] {
   opacity: 0;
   pointer-events: none;
+}
+
+.legal-bar {
+  background: var(--bg-elevated);
+  border-bottom: 1px solid var(--stroke);
 }
 
 /* Mobile menu: slide-in panel на всю высоту экрана */

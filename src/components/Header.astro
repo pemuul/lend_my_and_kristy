@@ -13,17 +13,22 @@ const navItems = [
   { href: withBase("/team"), label: "Команда", path: "/team" },
   { href: withBase("/contact"), label: "Контакты", path: "/contact" },
 ];
+const auditHref = `${withBase("/")}#audit`;
+const legalLine = "ИП Дементьева К.С. · ОГРНИП 325710000025380";
 ---
 <header class="site-header w-full">
   <div class="container-header flex h-full items-center justify-between gap-6">
-    <a href={withBase("/")} class="header-logo focus-ring group flex flex-col items-start gap-0.5 rounded-xl py-1">
-      <span class="header-logo-text text-lg font-bold tracking-tight sm:text-xl">
-        Лаборатория ИИ СКОЛКОВО
-      </span>
-      <span class="text-[10px] font-medium uppercase tracking-[0.25em] text-muted sm:text-xs">Исследование ИИ и АСУ</span>
-    </a>
+    <div class="header-logo-block flex flex-col items-start gap-0.5">
+      <a href={withBase("/")} class="header-logo focus-ring group flex flex-col items-start gap-0.5 rounded-xl py-1">
+        <span class="header-logo-text text-lg font-bold tracking-tight sm:text-xl">
+          Лаборатория ИИ СКОЛКОВО
+        </span>
+        <span class="text-[10px] font-medium uppercase tracking-[0.25em] text-muted sm:text-xs">Исследование ИИ и АСУ</span>
+      </a>
+      <p class="header-legal mt-1 text-[10px] leading-tight text-muted/90 sm:text-[11px]" role="doc-tip">{legalLine}</p>
+    </div>
 
-    <nav class="hidden items-center gap-1 lg:flex">
+    <nav class="hidden items-center gap-2 lg:flex">
       {navItems.map((item) => {
         const isActive = currentPath === item.path;
         return (
@@ -38,6 +43,12 @@ const navItems = [
           </a>
         );
       })}
+      <a
+        href={auditHref}
+        class="button button-primary ml-2 shrink-0 focus-ring whitespace-nowrap text-sm"
+      >
+        Углубленный аудит за символическую стоимость
+      </a>
     </nav>
 
     <button
@@ -79,8 +90,16 @@ const navItems = [
             </a>
           );
         })}
+        <a
+          href={auditHref}
+          class="button button-primary mt-4 w-full justify-center focus-ring"
+          data-menu-link
+        >
+          Углубленный аудит за символическую стоимость
+        </a>
       </nav>
-      <div class="mt-auto border-t border-stroke pt-6">
+      <div class="mt-auto border-t border-stroke pt-6 space-y-2">
+        <p class="text-[11px] text-muted/90">{legalLine}</p>
         <p class="text-xs font-medium uppercase tracking-wider text-muted">Исследование интеграции ИИ и АСУ</p>
       </div>
     </div>
