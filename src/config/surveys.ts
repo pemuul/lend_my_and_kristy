@@ -1,5 +1,5 @@
 /**
- * Ссылки на опросники (формы n8n).
+ * Ссылки на опросники.
  * Используются на страницах: /survey-pharmacy, /survey-mining, /survey-investment
  */
 export const surveyUrls = {

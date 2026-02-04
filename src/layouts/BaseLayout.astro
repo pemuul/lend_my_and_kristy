@@ -15,6 +15,7 @@ interface Props {
 
 const baseUrl = import.meta.env.BASE_URL;
 const siteOrigin = Astro.url.origin;
+const fullBase = (siteOrigin + baseUrl).replace(/\/*$/, "/");
 const {
   title,
   description,
@@ -45,10 +46,10 @@ const {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
-    <link rel="icon" href={`${baseUrl}favicon.svg`} type="image/svg+xml" />
-    <link rel="icon" href={`${baseUrl}favicon.ico`} sizes="any" />
-    <link rel="icon" href={`${baseUrl}favicon-96x96.png`} type="image/png" sizes="96x96" />
-    <link rel="apple-touch-icon" href={`${baseUrl}apple-touch-icon.png`} />
+    <link rel="icon" href={`${fullBase}favicon.svg`} type="image/svg+xml" />
+    <link rel="icon" href={`${fullBase}favicon.ico`} sizes="any" />
+    <link rel="icon" href={`${fullBase}favicon-96x96.png`} type="image/png" sizes="96x96" />
+    <link rel="apple-touch-icon" href={`${fullBase}apple-touch-icon.png`} />
     <meta name="theme-color" content="#05070b" />
   </head>
   <body style={`--accent: var(--${accent});`} class="bg-bg text-text">
