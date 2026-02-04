@@ -5,7 +5,8 @@ const baseUrl = import.meta.env.BASE_URL;
 const withBase = (path: string) => `${baseUrl.replace(/\/$/, "")}/${path.replace(/^\//, "")}`;
 const basePath = baseUrl.replace(/\/$/, "") || "";
 const pathname = Astro.url.pathname;
-const currentPath = basePath ? pathname.replace(new RegExp(`^${basePath}`), "") || "/" : pathname || "/";
+const rawPath = basePath ? pathname.replace(new RegExp(`^${basePath.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}`), "") : pathname;
+const currentPath = ("/" + (rawPath || "").replace(/^\/+|\/+$/g, "").replace(/\/index\.html$/i, "")).replace(/\/+/g, "/") || "/";
 
 const navItems = [
   { href: withBase("/"), label: "Главная", path: "/" },
