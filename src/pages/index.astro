@@ -39,7 +39,7 @@ const aiSpheres = [
         style={`background-image: url('${withBase("/patterns/circuit-blue.svg")}');`}
         aria-hidden="true"
       ></div>
-      <div class="relative z-10 grid gap-10 lg:grid-cols-[2fr_1fr] lg:items-center">
+      <div class="relative z-10 grid gap-10 lg:grid-cols-[2fr_1fr] lg:items-stretch">
         <div class="max-w-4xl">
           <span class="badge reveal">Февраль 2026 · Три отрасли</span>
           <h1 class="hero-title mt-6 text-4xl font-bold leading-tight tracking-tight text-text reveal sm:text-5xl lg:text-6xl">
@@ -55,17 +55,19 @@ const aiSpheres = [
             Мы изучаем, как российские компании внедряют нейросети, чтобы выявить лучшие практики, барьеры и создать карту возможностей.
           </p>
         </div>
-        <aside class="hidden lg:block" aria-label="Ключевые сферы применения нейросетей в российском бизнесе">
-          <h2 class="text-sm font-semibold uppercase tracking-widest text-muted">Ключевые сферы применения нейросетей в российском бизнесе</h2>
-          <ul class="mt-5 space-y-3">
+        <aside class="hidden min-h-0 flex-col lg:flex lg:flex-col" aria-label="Ключевые сферы применения нейросетей в российском бизнесе">
+          <h2 class="text-sm font-semibold uppercase tracking-widest text-muted shrink-0">Ключевые сферы применения нейросетей в российском бизнесе</h2>
+          <ul class="mt-4 flex flex-1 flex-col justify-between gap-2">
             {aiSpheres.map((item) => (
               <li>
-                <div class="card-surface group flex flex-col gap-2 p-4 transition hover:border-blue/30">
-                  <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-blue/20 to-violet/20 text-blue">
+                <div class="card-surface group flex items-center gap-3 p-3 transition hover:border-blue/30">
+                  <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-blue/20 to-violet/20 text-blue">
                     <Icon name={item.icon} class="h-4 w-4" aria-hidden="true" />
                   </div>
-                  <h3 class="text-sm font-semibold text-text">{item.title}</h3>
-                  <p class="text-xs leading-snug text-muted">{item.description}</p>
+                  <div class="min-w-0">
+                    <h3 class="text-base font-semibold leading-tight text-text sm:text-lg">{item.title}</h3>
+                    <p class="mt-0.5 text-sm leading-snug text-muted">{item.description}</p>
+                  </div>
                 </div>
               </li>
             ))}
