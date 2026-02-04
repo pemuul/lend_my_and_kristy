@@ -123,10 +123,18 @@ img {
   filter: blur(80px);
   opacity: 0.4;
   pointer-events: none;
+  will-change: transform;
+  contain: paint;
 }
 
 .glow-orb-ambient {
   animation: orb-pulse 10s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glow-orb-ambient {
+    animation: none;
+  }
 }
 
 @keyframes orb-pulse {
@@ -147,24 +155,53 @@ img {
   text-shadow: 0 0 40px rgba(59, 130, 246, 0.15);
 }
 
-/* Сканирующая линия в герое (tech-стиль) */
+/* Сканирующая линия в герое (tech-стиль). transform вместо top — меньше лагов. */
 .hero-scan-line {
   position: absolute;
   left: 0;
   right: 0;
+  top: 0;
   height: 1px;
   background: linear-gradient(90deg, transparent 0%, rgba(59, 130, 246, 0.15) 20%, rgba(139, 92, 246, 0.25) 50%, rgba(59, 130, 246, 0.15) 80%, transparent 100%);
   box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
   animation: scan-line 14s linear infinite;
   pointer-events: none;
   z-index: 1;
+  will-change: transform;
 }
 
 @keyframes scan-line {
-  0% { top: 0; opacity: 0.6; }
+  0% { transform: translateY(0); opacity: 0.6; }
   10% { opacity: 1; }
   90% { opacity: 1; }
-  100% { top: 100%; opacity: 0.6; }
+  100% { transform: translateY(100vh); opacity: 0.6; }
+}
+
+/* Пульсирующая стрелка вниз — привязана к низу экрана (ПК), скрывается при скролле */
+.hero-scroll-arrow {
+  opacity: 0.4;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  animation: hero-arrow-pulse 2s ease-in-out infinite;
+}
+
+.hero-scroll-arrow.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+@keyframes hero-arrow-pulse {
+  0%, 100% { opacity: 0.35; transform: translateX(-50%) translateY(0); }
+  50% { opacity: 0.6; transform: translateX(-50%) translateY(6px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-scan-line {
+    animation: none;
+  }
+  .hero-scroll-arrow {
+    animation: none;
+  }
 }
 
 /* ========== Cards ========== */

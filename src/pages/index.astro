@@ -73,6 +73,10 @@ const aiSpheres = [
         </aside>
       </div>
     </div>
+    <!-- Пульсирующая стрелка вниз (только ПК), привязана к низу экрана, скрывается при скролле -->
+    <div id="hero-scroll-hint" class="hero-scroll-arrow fixed bottom-2 left-1/2 z-20 hidden -translate-x-1/2 lg:flex" aria-hidden="true">
+      <Icon name="lucide:chevron-down" class="h-[200px] w-[200px] text-white/25" />
+    </div>
   </section>
 
   <!-- Сферы ИИ — только на мобильной (на десктопе список справа в герое) -->
@@ -274,6 +278,29 @@ const aiSpheres = [
       );
 
       observer.observe(section);
+    })();
+
+    // Скрыть пульсирующую стрелку при скролле вниз (ПК), не чаще раза за кадр
+    (function () {
+      const hint = document.getElementById("hero-scroll-hint");
+      if (!hint) return;
+      const threshold = 80;
+      let scheduled = false;
+      function update() {
+        if (!hint) return;
+        if (window.scrollY > threshold) hint.classList.add("is-hidden");
+        else hint.classList.remove("is-hidden");
+      }
+      function onScroll() {
+        if (scheduled) return;
+        scheduled = true;
+        requestAnimationFrame(() => {
+          update();
+          scheduled = false;
+        });
+      }
+      window.addEventListener("scroll", onScroll, { passive: true });
+      update();
     })();
   </script>
 </BaseLayout>
