@@ -98,10 +98,8 @@ img {
 .bg-mesh {
   background-color: var(--bg);
   background-image:
-    radial-gradient(ellipse 90% 60% at 15% 30%, rgba(59, 130, 246, 0.18) 0%, transparent 50%),
-    radial-gradient(ellipse 70% 50% at 85% 15%, rgba(139, 92, 246, 0.12) 0%, transparent 50%),
-    radial-gradient(ellipse 60% 40% at 75% 75%, rgba(6, 182, 212, 0.1) 0%, transparent 50%),
-    radial-gradient(ellipse 50% 30% at 50% 50%, rgba(139, 92, 246, 0.04) 0%, transparent 60%);
+    radial-gradient(ellipse 90% 60% at 20% 30%, rgba(59, 130, 246, 0.14) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 50% at 80% 20%, rgba(139, 92, 246, 0.1) 0%, transparent 55%);
 }
 
 .section-alt {
@@ -117,64 +115,69 @@ img {
   pointer-events: none;
 }
 
+/* Орбы — только статичные градиенты, без анимации. Любая анимация в герое даёт лаги. */
 .glow-orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.4;
   pointer-events: none;
-  will-change: transform;
-  contain: paint;
 }
 
-.glow-orb-ambient {
-  animation: orb-pulse 10s ease-in-out infinite;
+.glow-orb.glow-orb-blue {
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.26) 0%, rgba(59, 130, 246, 0.08) 50%, transparent 72%);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .glow-orb-ambient {
-    animation: none;
-  }
+.glow-orb.glow-orb-violet {
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.2) 0%, rgba(139, 92, 246, 0.06) 50%, transparent 72%);
 }
 
-@keyframes orb-pulse {
-  0%, 100% { transform: scale(1); opacity: 0.35; }
-  50% { transform: scale(1.12); opacity: 0.55; }
+.glow-orb.glow-orb-cyan {
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.16) 0%, rgba(6, 182, 212, 0.05) 50%, transparent 72%);
 }
 
-.hero-grid::after {
-  content: "";
+/* Сетка из готовой картинки (1 слой) — без лагов в отличие от CSS-градиентов */
+.hero-grid-bg {
   position: absolute;
   inset: 0;
-  background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-  background-size: 60px 60px;
+  background-repeat: repeat;
+  background-size: 100px 100px;
   pointer-events: none;
+  z-index: 0;
 }
 
-.hero-title {
-  text-shadow: 0 0 40px rgba(59, 130, 246, 0.15);
-}
-
-/* Сканирующая линия в герое (tech-стиль). transform вместо top — меньше лагов. */
+/* Сканирующая линия — только transform, пауза при скролле */
 .hero-scan-line {
   position: absolute;
   left: 0;
   right: 0;
   top: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent 0%, rgba(59, 130, 246, 0.15) 20%, rgba(139, 92, 246, 0.25) 50%, rgba(59, 130, 246, 0.15) 80%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, rgba(59, 130, 246, 0.25) 30%, rgba(139, 92, 246, 0.35) 50%, rgba(59, 130, 246, 0.25) 70%, transparent 100%);
   box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
-  animation: scan-line 14s linear infinite;
+  animation: hero-scan-line 16s linear infinite;
   pointer-events: none;
   z-index: 1;
   will-change: transform;
 }
 
-@keyframes scan-line {
+@keyframes hero-scan-line {
   0% { transform: translateY(0); opacity: 0.6; }
-  10% { opacity: 1; }
-  90% { opacity: 1; }
+  6% { opacity: 1; }
+  94% { opacity: 1; }
   100% { transform: translateY(100vh); opacity: 0.6; }
+}
+
+body.is-scrolling .hero-scan-line {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-scan-line {
+    animation: none;
+  }
+}
+
+.hero-title {
+  text-shadow: 0 0 32px rgba(59, 130, 246, 0.12);
 }
 
 /* Пульсирующая стрелка вниз — привязана к низу экрана (ПК), скрывается при скролле */
@@ -195,10 +198,23 @@ img {
   50% { opacity: 0.6; transform: translateX(-50%) translateY(6px); }
 }
 
+/* Во время скролла останавливать анимации хедера и стрелки */
+body.is-scrolling .hero-scroll-arrow {
+  animation-play-state: paused;
+}
+
+body.is-scrolling .site-header::after {
+  animation-play-state: paused;
+}
+
+/* Убрать blur у хедера во время скролла — сильно снижает лаги */
+body.is-scrolling .site-header {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  background: rgba(5, 7, 11, 0.98);
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .hero-scan-line {
-    animation: none;
-  }
   .hero-scroll-arrow {
     animation: none;
   }
@@ -261,6 +277,7 @@ img {
   background: linear-gradient(180deg, rgba(5, 7, 11, 0.92) 0%, rgba(5, 7, 11, 0.88) 100%);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
+  transition: backdrop-filter 0.15s ease, background 0.15s ease;
   box-shadow:
     0 1px 0 0 rgba(255, 255, 255, 0.06),
     0 0 0 1px rgba(255, 255, 255, 0.03) inset,

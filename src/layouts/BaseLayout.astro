@@ -52,7 +52,7 @@ const {
     <link rel="apple-touch-icon" href={`${fullBase}apple-touch-icon.png`} />
     <meta name="theme-color" content="#05070b" />
   </head>
-  <body style={`--accent: var(--${accent});`} class="bg-bg text-text">
+  <body style={`--accent: var(--${accent});`} class="bg-bg text-text" id="body-el">
     <Header />
     <main class="main-with-fixed-header">
       <slot />
@@ -91,6 +91,23 @@ const {
         if (event.key === 'Escape') closeMenu();
       });
 
+      // Во время скролла останавливать тяжёлые анимации — убирает лаги в верхней части
+      (function () {
+        const body = document.getElementById('body-el');
+        if (!body) return;
+        let scrollEndTimer = 0;
+        const SCROLL_END_MS = 120;
+        function onScroll() {
+          body.classList.add('is-scrolling');
+          if (scrollEndTimer) clearTimeout(scrollEndTimer);
+          scrollEndTimer = window.setTimeout(() => {
+            body.classList.remove('is-scrolling');
+            scrollEndTimer = 0;
+          }, SCROLL_END_MS);
+        }
+        window.addEventListener('scroll', onScroll, { passive: true });
+      })();
+
       const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       if (!prefersReduced) {
         const observer = new IntersectionObserver(
@@ -102,7 +119,7 @@ const {
               }
             });
           },
-          { threshold: 0.15 }
+          { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
         );
 
         document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
